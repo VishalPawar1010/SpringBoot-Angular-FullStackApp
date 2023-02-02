@@ -5,17 +5,19 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { RolesListComponent } from './components/roles-list/roles-list.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent
+    ProductListComponent,
+    UserListComponent,
+    RolesListComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
-  providers: [ProductService],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, HttpClientModule],
+  providers: [ProductService, UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
