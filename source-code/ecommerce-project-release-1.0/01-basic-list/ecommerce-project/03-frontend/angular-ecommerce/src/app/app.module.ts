@@ -10,6 +10,7 @@ import { RolesListComponent } from './components/roles-list/roles-list.component
 import { UserService } from './services/user.service';
 import { RolesService } from './services/roles.service';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 
 const routes: Routes = [
   { path: 'products', component: ProductListComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
     ProductListComponent,
     UserListComponent,
     RolesListComponent,
+    ProductCategoryMenuComponent,
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [ProductService, UserService, RolesService],
