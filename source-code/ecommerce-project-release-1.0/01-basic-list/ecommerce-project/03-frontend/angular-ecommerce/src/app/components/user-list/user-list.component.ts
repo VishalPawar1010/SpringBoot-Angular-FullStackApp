@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Users } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,12 +10,27 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserListComponent implements OnInit {
   users: Users[] = [];
-  constructor(private userService: UserService) {}
+  // currentRoleId: number;
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
-    this.listUsers();
+  ngOnInit() {
+    this.route.paramMap.subscribe(() => {
+      this.listUsers();
+    });
   }
   listUsers() {
+    // check if given id is available
+    // const hasRoleId: boolean = this.route.snapshot.paramMap.has('id');
+
+    // if (hasRoleId) {
+    //   this.currentRoleId = +this.route.snapshot.paramMap.get('id')!;
+    // }else{
+    //   this.currentRoleId
+    // }
+
     this.userService.getUserList().subscribe((data) => {
       this.users = data;
     });

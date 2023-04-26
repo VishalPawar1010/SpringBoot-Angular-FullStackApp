@@ -29,19 +29,42 @@
       </a>
     </div>
     <div class="menu-sidebar-content js-scrollbar1">
-      <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
+      <nav class="navbar-sidebar-wrap">
+        <ul class="list-styled navbar-list">
           <li>
-            <a href="#">Books</a>
+            <a href="/products">Products</a>
+          </li>
+
+          <ol class="list-group navbar-list">
+            <li>
+              <a routerLink="category/1" routerLinkActive="active-link"
+                >Books</a
+              >
+            </li>
+            <li>
+              <a routerLink="/category/2" routerLinkActive="active-link"
+                >Coffee Mugs</a
+              >
+            </li>
+            <li>
+              <a routerLink="/category/3" routerLinkActive="active-link"
+                >Mouse Pads</a
+              >
+            </li>
+            <li>
+              <a routerLink="/category/4" routerLinkActive="active-link"
+                >Luggage Tags</a
+              >
+            </li>
+          </ol>
+        </ul>
+        <hr />
+        <ul class="list-styled navbar-list">
+          <li>
+            <a href="/users">Users</a>
           </li>
           <li>
-            <a href="#">Coffee Mugs</a>
-          </li>
-          <li>
-            <a href="#">Mouse Pads</a>
-          </li>
-          <li>
-            <a href="#">Luggage Tags</a>
+            <a href="/roles">Roles</a>
           </li>
         </ul>
       </nav>
@@ -52,6 +75,7 @@
   <!-- PAGE CONTAINER-->
   <div class="page-container">
     <!-- HEADER DESKTOP-->
+
     <header class="header-desktop">
       <div class="section-content section-content-p30">
         <div class="container-fluid">
@@ -72,7 +96,6 @@
               </a>
             </div>
           </div>
-
           <div class="account-wrap"></div>
         </div>
       </div>
@@ -81,75 +104,22 @@
 
     <!-- MAIN CONTENT-->
     <div class="main-content">
-      <app-product-list></app-product-list>
-
-      <!-- END MAIN CONTENT-->
+      <!-- <app-product-list></app-product-list> -->
+      <router-outlet></router-outlet>
     </div>
+
+    <!-- END MAIN CONTENT-->
   </div>
-
-  <!-- END PAGE CONTAINER-->
-
-  <footer>
-    <ul>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="#">Help</a></li>
-    </ul>
-  </footer>
-
-  <!-- end document-->
-  <!-- <div class="container-fluid">
-  <div>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-     <a class="navbar-brand" href="/">
-      <img src="assets/images/argushop-logo.png" />
-    </a> 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#topNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="topNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/categories">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/brands">Brands</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/customers">Customers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/shipping">Shipping</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/orders">Orders</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/report">Sales Report</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/articles">Articles</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/menus">Menus</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/settings">Settings</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</div> -->
 </div>
+
+<!-- END PAGE CONTAINER-->
+
+<footer>
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>
+
+<!-- end document-->
