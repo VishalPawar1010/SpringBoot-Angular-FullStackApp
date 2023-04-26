@@ -32,10 +32,10 @@ export class ProductService {
 interface GetResponseProducts {
   _embedded: {
     products: Product[];
-  };
+  }
 }
 interface GetResponseProductCategory {
   _embedded: {
     productCategory: ProductCategory[];
-  };
+  }
 }
