@@ -2,10 +2,10 @@ package com.luv2code.ecommerce.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	public DaoAuthenticationProvider authenticationProvider() {
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService());
 		authProvider.setPasswordEncoder(passwordEncoder());
@@ -43,20 +44,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		
+//		http.authorizeRequests()
+//			.antMatchers("/")
+//			.permitAll()
+//			.antMatchers("/home")
+////			.hasRole("Admin")
+//			.hasAuthority("Admin")
+//			.anyRequest().authenticated().and().httpBasic();
+		
+		http
+//		.csrf().disable()
+		.authorizeRequests()
 			.antMatchers("/users/**").hasAuthority("Admin")
 			.anyRequest().authenticated()
 			.and()
-			.formLogin()			
-				.loginPage("/login")
-				.usernameParameter("email")
-				.permitAll()
-			.and().logout().permitAll()
-			.and()
-				.rememberMe()
-					.key("AbcDefgHijKlmnOpqrs_1234567890")
-					.tokenValiditySeconds(7 * 24 * 60 * 60);
+			.httpBasic()
+//			.formLogin()			
+//				.loginPage("/login")
+//				.usernameParameter("email")
+//				.permitAll()
+////			.and().logout().permitAll()
+////			.and()
+////				.rememberMe()
+////					.key("AbcDefgHijKlmnOpqrs_1234567890")
+////					.tokenValiditySeconds(7 * 24 * 60 * 60)
 					;
+					
 			
 	}
 

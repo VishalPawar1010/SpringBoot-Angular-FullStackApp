@@ -17,6 +17,7 @@ public class eComUserDetails implements UserDetails {
 	private User user;
 
 	public eComUserDetails(User user) {
+//		super();
 		this.user = user;
 	}
 
