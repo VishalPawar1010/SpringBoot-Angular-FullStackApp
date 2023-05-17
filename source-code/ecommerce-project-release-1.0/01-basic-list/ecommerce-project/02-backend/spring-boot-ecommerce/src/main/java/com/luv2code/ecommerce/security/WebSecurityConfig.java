@@ -14,36 +14,39 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig 
+//extends 
+//WebSecurityConfigurerAdapter
+{
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new eComUserDetailsService();
-	}
+//	@Bean
+//	public UserDetailsService userDetailsService() {
+//		return new eComUserDetailsService();
+//	}
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	public AuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(userDetailsService());
-		authProvider.setPasswordEncoder(passwordEncoder());
-		
-		return authProvider;
-	}
-	
-	
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider());
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
+//	
+//	@Bean
+//	public AuthenticationProvider authenticationProvider() {
+//		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//		authProvider.setUserDetailsService(userDetailsService());
+//		authProvider.setPasswordEncoder(passwordEncoder());
+//		
+//		return authProvider;
+//	}
+//	
+//	
+//	
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.authenticationProvider(authenticationProvider());
+//	}
+//
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
 		
 //		http.authorizeRequests()
 //			.antMatchers("/")
@@ -53,13 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.hasAuthority("Admin")
 //			.anyRequest().authenticated().and().httpBasic();
 		
-		http
+//		http
 //		.csrf().disable()
-		.authorizeRequests()
-			.antMatchers("/users/**").hasAuthority("Admin")
-			.anyRequest().authenticated()
-			.and()
-			.httpBasic()
+//		.authorizeRequests()
+//			.antMatchers("/users/**").hasAuthority("Admin")
+//			.anyRequest().authenticated()
+//			.and()
+//			.httpBasic()
 //			.formLogin()			
 //				.loginPage("/login")
 //				.usernameParameter("email")
@@ -72,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					;
 					
 			
-	}
+//	}
 
 //	@Override
 //	public void configure(WebSecurity web) throws Exception {
