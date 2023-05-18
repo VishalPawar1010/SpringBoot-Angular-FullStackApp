@@ -40,7 +40,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetailForToken.getEmail().toString())
                 .claim("id", userDetailForToken.getId().toString())
-                .claim("role", userDetailForToken.getRole().toString())
+//                .claim("role", userDetailForToken.getRole().toString())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
