@@ -2,15 +2,14 @@ package com.luv2code.ecommerce.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("*")
 public class LoginController {
 
 	@GetMapping("/home")
@@ -21,7 +20,9 @@ public class LoginController {
 	private LoginInterface loginService;
 
     @Autowired
-    public LoginController(@Qualifier("loginServiceImpl") LoginInterface loginService) {
+    public LoginController(
+    		@Qualifier("loginServiceImpl") 
+    		LoginInterface loginService) {
         this.loginService = loginService;
     }
 
@@ -29,6 +30,7 @@ public class LoginController {
 	@PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> loginRequest(@RequestBody LoginDetail loginDetail) throws MissingParameterException 
     		 {
+                 System.out.println(loginService.loginRequest(loginDetail));
         return ResponseEntity.ok(loginService.loginRequest(loginDetail));
     }
 

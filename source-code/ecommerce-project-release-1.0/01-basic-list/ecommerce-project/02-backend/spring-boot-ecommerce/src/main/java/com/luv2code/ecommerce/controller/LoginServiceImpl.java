@@ -1,9 +1,19 @@
 package com.luv2code.ecommerce.controller;
 
-public class LoginServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
-	public LoginServiceImpl() {
-		// TODO Auto-generated constructor stub
-	}
 
+@Qualifier("loginDaoImpl")
+@Service
+public class LoginServiceImpl implements LoginInterface {
+
+	@Autowired
+	private LoginInterface loginDao;
+
+ 	@Override
+ 	public AuthenticationResponse loginRequest(LoginDetail loginDetail) throws MissingParameterException {
+ 		return loginDao.loginRequest(loginDetail);
+}
 }

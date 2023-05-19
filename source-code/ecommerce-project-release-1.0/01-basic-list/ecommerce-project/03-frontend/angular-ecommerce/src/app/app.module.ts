@@ -21,9 +21,8 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthenticateGuard],
     children: [
-      // { path: '', component: UserListComponent },
       { path: 'login', component: LoginComponent },
-      { path: '**', redirectTo: '' },
+      { path: 'users', component: UserListComponent },
       { path: 'products', component: ProductListComponent },
       { path: 'users', component: UserListComponent },
       { path: 'roles', component: RolesListComponent },

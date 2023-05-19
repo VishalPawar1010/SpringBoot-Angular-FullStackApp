@@ -1,14 +1,14 @@
 package com.luv2code.ecommerce.JwtSecurity;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
+import aj.org.objectweb.asm.TypeReference;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.luv2code.ecommerce.JwtSecurity.jwt.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,13 +16,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.luv2code.ecommerce.JwtSecurity.jwt.JwtAuthenticationFilter;
-
-import aj.org.objectweb.asm.TypeReference;
-import lombok.RequiredArgsConstructor;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableWebSecurity
 @Configuration
@@ -39,20 +36,21 @@ public class SecurityConfig {
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.cors().and().csrf().disable();
-		
-        http.authorizeRequests()
-      .antMatchers("/users/*").permitAll()
-      .antMatchers("2").hasAuthority("EMPLOYEE")
-      .antMatchers("3").hasRole("EMPLOYEE")
-      .and().formLogin();
-		
-		http.authorizeRequests().antMatchers("/authenticate").permitAll()
-		.anyRequest().authenticated()
-		.and().exceptionHandling()
-				.and()
-				
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+
+		http.authorizeRequests().antMatchers("/users/**").authenticated()
+		.antMatchers("/api/login").permitAll()
+		.and().httpBasic();
+//				.anyRequest().authenticated()
+//      .and().httpBasic()
+//				.and().formLogin();
+		;
+
+//		http.authorizeRequests().antMatchers("/authenticate").permitAll()
+//		.anyRequest().authenticated()
+//		.and().exceptionHandling()
+//				.and()
+
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();

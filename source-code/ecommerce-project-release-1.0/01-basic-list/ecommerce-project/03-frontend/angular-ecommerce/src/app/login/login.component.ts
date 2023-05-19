@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     let url = '/api/login';
     this.http
       .post<any>(url, {
-        username: this.model.username,
+        email: this.model.username,
         password: this.model.password,
       })
       .subscribe((res) => {
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
           this.sessionId = res.sessionId;
 
           sessionStorage.setItem('token', this.sessionId);
-          this.router.navigate(['']);
+          this.router.navigate(['users']);
+          console.log(sessionStorage.getItem('token'));
         } else {
           alert('Authentication failed.');
         }
