@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticateGuard } from './authenticate.guard';
 import { RequestInterceptor } from './request.interceptor';
+import { AddUserComponent } from './components/user-list/add-user.component';
 
 // const routes: Routes = [
 //   {
@@ -49,6 +50,11 @@ const routes: Routes = [
     path: 'users',
     canActivate: [AuthenticateGuard],
     component: UserListComponent,
+  },
+  {
+    path: 'add-user',
+    canActivate: [AuthenticateGuard],
+    component: AddUserComponent,
   },
   {
     path: 'roles',
@@ -87,6 +93,7 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     UserListComponent,
+    AddUserComponent,
     RolesListComponent,
     ProductCategoryMenuComponent,
     LoginComponent,

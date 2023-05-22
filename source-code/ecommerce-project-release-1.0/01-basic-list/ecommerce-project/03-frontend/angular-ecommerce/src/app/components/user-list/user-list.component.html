@@ -1,32 +1,71 @@
 <!-- <p *ngFor="let tempUser of users">
   {{ tempUser.firstName }}:{{ tempUser.lastName }}
 </p> -->
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Photos</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Roles</th>
-      <th>Enabled?</th>
-      <th>Edits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tempUser of users">
-      <td class="align-middle">
-        <img
-          src="assets/images/Users/{{ tempUser.photos }}"
-          class="sm-auto rounded img-fluid"
-          style="width: 80px"
-        />
-      </td>
-      <td>{{ tempUser.email }}</td>
-      <td>{{ tempUser.firstName }}</td>
-      <td>{{ tempUser.lastName }}</td>
-      <td>{{ tempUser.roles }}</td>
-      <td>{{ tempUser.enabled }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="mt-3 text-center container">
+  <button class="btn btn-success d-md-inline mt-0" (click)="goToAddUser()">
+    Create New User
+  </button>
+</div>
+
+<div class="mt-3 container container-fluid">
+  <table class="table">
+    <thead class="thead-dark bg-info">
+      <tr>
+        <th>Photos</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <!-- <th>Roles</th> -->
+        <!-- <th>Enabled?</th> -->
+        <th>Edits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tempUser of users">
+        <td class="align-middle">
+          <img
+            src="assets/images/Users/{{ tempUser.photos }}"
+            class="sm-auto rounded img-fluid"
+            style="width: 80px"
+          />
+        </td>
+        <td>{{ tempUser.email }}</td>
+        <td>{{ tempUser.firstName }}</td>
+        <td>{{ tempUser.lastName }}</td>
+        <!-- <td>{{ tempUser.roles }}</td> -->
+        <!-- <td>{{ tempUser.enabled }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Photos</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Roles</th>
+        <th>Enabled?</th>
+        <th>Edits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tempUser of users">
+        <td class="align-middle">
+          <img
+            src="assets/images/Users/{{ tempUser.photos }}"
+            class="sm-auto rounded img-fluid"
+            style="width: 80px"
+          />
+        </td>
+        <td>{{ tempUser.email }}</td>
+        <td>{{ tempUser.firstName }}</td>
+        <td>{{ tempUser.lastName }}</td>
+        <td>{{ tempUser.roles }}</td>
+        <td>{{ tempUser.enabled }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->

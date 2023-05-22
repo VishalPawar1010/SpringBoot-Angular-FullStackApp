@@ -1,0 +1,107 @@
+<!-- Add a form for creating a new user
+<div class="container">
+  <form
+    class="col-8"
+    style="max-width: 350px; margin: 0 auto"
+    (submit)="createUser(newUserForm)"
+    #userForm="ngForm"
+  >
+    <div class="border border-secondary rounded p-3">
+      <p>Add new user</p>
+      <div>
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          [(ngModel)]="newUserForm.email"
+          #name="ngModel"
+        />
+      </div>
+      <div>
+        <label>First Name:</label>
+        <input
+          type="text"
+          name="firstName"
+          required
+          [(ngModel)]="newUserForm.firstName"
+        />
+      </div>
+      <div>
+        <label>Last Name:</label>
+        <input
+          type="text"
+          name="lastName"
+          required
+          [(ngModel)]="newUserForm.lastName"
+        />
+      </div>
+      <button class="btn btn-success" type="submit">Create User</button>
+    </div>
+  </form>
+</div> -->
+
+<<!-- Add a form for creating a new user -->
+<div class="container">
+  <form
+    class="col-8"
+    style="max-width: 350px; margin: 0 auto"
+    (submit)="createUser(newUserForm)"
+    #userForm="ngForm"
+  >
+    <div class="border border-secondary rounded p-3 d-flex flex-column">
+      <div class="my-auto">
+        <p class="h5 mb-4 text-center">Add new user</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          [(ngModel)]="newUserForm.email"
+          #name="ngModel"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          required
+          [(ngModel)]="newUserForm.firstName"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          required
+          [(ngModel)]="newUserForm.lastName"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Role">Role:</label>
+        <input
+          id="Role"
+          type="text"
+          name="Role"
+          required
+          [(ngModel)]="newUserForm.roles"
+          class="form-control"
+        />
+      </div>
+      <div class="mt-3 text-center">
+        <button class="btn btn-success" type="submit">Create User</button>
+      </div>
+    </div>
+  </form>
+</div>
