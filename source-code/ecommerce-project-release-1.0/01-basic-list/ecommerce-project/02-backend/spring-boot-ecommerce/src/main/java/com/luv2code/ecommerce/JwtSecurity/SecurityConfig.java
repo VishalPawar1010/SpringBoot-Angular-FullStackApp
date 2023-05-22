@@ -37,13 +37,24 @@ public class SecurityConfig {
 
 		http.cors().and().csrf().disable();
 
-		http.authorizeRequests().antMatchers("/users/**").authenticated()
+		http.authorizeRequests()
+		.antMatchers("/users/**").authenticated()
+		.antMatchers("/products","/product-category/**").authenticated()
 		.antMatchers("/api/login").permitAll()
-		.and().httpBasic();
+		.and().httpBasic()
+		.and().formLogin();
+		
+		 http
+         .logout()
+             .logoutUrl("/logout") 
+             .logoutSuccessUrl("/login?logout") 
+             .invalidateHttpSession(true) 
+             .deleteCookies("JSESSIONID"); 
+	
 //				.anyRequest().authenticated()
 //      .and().httpBasic()
 //				.and().formLogin();
-		;
+//		;
 
 //		http.authorizeRequests().antMatchers("/authenticate").permitAll()
 //		.anyRequest().authenticated()

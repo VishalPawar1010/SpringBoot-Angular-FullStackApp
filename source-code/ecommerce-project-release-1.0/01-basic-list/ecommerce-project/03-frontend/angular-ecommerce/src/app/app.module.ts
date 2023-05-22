@@ -16,30 +16,72 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticateGuard } from './authenticate.guard';
 import { RequestInterceptor } from './request.interceptor';
 
+// const routes: Routes = [
+//   {
+//     path: '',
+//     canActivate: [AuthenticateGuard],
+//     children: [
+//       { path: 'login', component: LoginComponent },
+//       { path: 'users', component: UserListComponent },
+//       { path: 'roles', component: RolesListComponent },
+//       { path: 'category/:id', component: ProductListComponent },
+//       { path: 'category', component: ProductListComponent },
+//       { path: 'products', component: ProductListComponent },
+
+//       { path: '', redirectTo: '/products', pathMatch: 'full' },
+//       { path: '**', redirectTo: '/products', pathMatch: 'full' },
+//       // { path: 'users', component: UserListComponent },
+//       // { path: 'users/:id', component: UserListComponent },
+//       // { path: 'roles/:id', component: UserListComponent },
+//       // { path: 'roles/:id', component: RolesListComponent },
+
+//       // { path: '', redirectTo: '/users', pathMatch: 'full' },
+//       // { path: '**', redirectTo: '/users', pathMatch: 'full' },
+//     ],
+//   },
+// ];
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'users',
     canActivate: [AuthenticateGuard],
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'users', component: UserListComponent },
-      { path: 'products', component: ProductListComponent },
-      { path: 'users', component: UserListComponent },
-      { path: 'roles', component: RolesListComponent },
-      { path: 'category/:id', component: ProductListComponent },
-      { path: 'category', component: ProductListComponent },
-
-      { path: '', redirectTo: '/products', pathMatch: 'full' },
-      { path: '**', redirectTo: '/products', pathMatch: 'full' },
-      // { path: 'users/:id', component: UserListComponent },
-      // { path: 'roles/:id', component: UserListComponent },
-      // { path: 'roles/:id', component: RolesListComponent },
-
-      // { path: '', redirectTo: '/users', pathMatch: 'full' },
-      // { path: '**', redirectTo: '/users', pathMatch: 'full' },
-    ],
+    component: UserListComponent,
+  },
+  {
+    path: 'roles',
+    canActivate: [AuthenticateGuard],
+    component: RolesListComponent,
+  },
+  {
+    path: 'products',
+    canActivate: [AuthenticateGuard],
+    component: ProductListComponent,
+  },
+  {
+    path: 'category',
+    canActivate: [AuthenticateGuard],
+    component: ProductListComponent,
+  },
+  {
+    path: 'category/:id',
+    canActivate: [AuthenticateGuard],
+    component: ProductListComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/products',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: '/products',
+    pathMatch: 'full',
   },
 ];
+
 @NgModule({
   declarations: [
     AppComponent,

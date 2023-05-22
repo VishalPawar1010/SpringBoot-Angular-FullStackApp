@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  sessionId: any = {};
+  token: any = {};
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
       })
       .subscribe((res) => {
         if (res) {
-          this.sessionId = res.sessionId;
-
-          sessionStorage.setItem('token', this.sessionId);
+          this.token = res.token;
+          sessionStorage.setItem('token', this.token);
           this.router.navigate(['users']);
-          console.log(sessionStorage.getItem('token'));
+          // console.log(sessionStorage.getItem('token'));
         } else {
           alert('Authentication failed.');
         }
