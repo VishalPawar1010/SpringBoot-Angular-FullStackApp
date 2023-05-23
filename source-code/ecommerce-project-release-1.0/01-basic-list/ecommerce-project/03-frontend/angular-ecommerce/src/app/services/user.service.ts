@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Roles } from '../common/roles';
-import { Users } from '../common/users';
+import { newUser, Users } from '../common/users';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class UserService {
     return this.httpClient.get<Users>(`${this.baseUrl}/${id}`);
   }
 
-  createUser(user: Users): Observable<Users> {
+  createUser(user: newUser): Observable<Users> {
     return this.httpClient.post<Users>(this.baseUrl, user);
   }
 

@@ -52,11 +52,6 @@ const routes: Routes = [
     component: UserListComponent,
   },
   {
-    path: 'add-user',
-    canActivate: [AuthenticateGuard],
-    component: AddUserComponent,
-  },
-  {
     path: 'roles',
     canActivate: [AuthenticateGuard],
     component: RolesListComponent,
@@ -80,6 +75,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/products',
     pathMatch: 'full',
+  },
+  {
+    path: 'add-user',
+    canActivate: [AuthenticateGuard],
+    component: AddUserComponent,
   },
   {
     path: '**',

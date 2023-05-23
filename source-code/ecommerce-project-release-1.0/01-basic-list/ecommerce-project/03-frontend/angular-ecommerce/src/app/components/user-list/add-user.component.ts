@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Users } from 'src/app/common/users';
+import { Users, newUser } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -10,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-user.component.html'],
 })
 export class AddUserComponent implements OnInit {
-  newUserForm: Users = new Users(0, '', '', '', '', '', '');
+  newUserForm: newUser = new newUser('', '', '', '');
+  // roles: String = '';
 
   constructor(
     private userService: UserService,
@@ -18,11 +19,11 @@ export class AddUserComponent implements OnInit {
     private router: Router // private formBuilder: FormBuilder
   ) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
-  createUser(user: Users): void {
-    this.userService.createUser(user).subscribe((newUser) => {
+  createUser(newUser: newUser): void {
+    this.userService.createUser(newUser).subscribe((newUser) => {
       // Handle success or show appropriate message
     });
   }
