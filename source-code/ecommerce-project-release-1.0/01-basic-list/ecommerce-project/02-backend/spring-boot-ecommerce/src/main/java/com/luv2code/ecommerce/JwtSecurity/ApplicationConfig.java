@@ -30,7 +30,7 @@ public class ApplicationConfig {
 //	}
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new eComUserDetailsService();
+		return new eComUserDetailsService(userRepository);
 	}
 
 	@Bean

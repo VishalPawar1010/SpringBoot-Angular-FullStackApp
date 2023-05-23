@@ -38,18 +38,24 @@ public class SecurityConfig {
 		http.cors().and().csrf().disable();
 
 		http.authorizeRequests()
-		.antMatchers("/users/**").authenticated()
-		.antMatchers("/products","/product-category/**").authenticated()
+		
+		.antMatchers("/api/users/**").hasAuthority("Admin")
+		.antMatchers("/api/roles/**").hasAuthority("Shipper")
+		.antMatchers("/api/products/").hasAuthority("Salesperson")
+		.antMatchers("/api/products/**").hasAuthority("Editor")
+		.antMatchers("/home").authenticated()
 		.antMatchers("/api/login").permitAll()
+//		.antMatchers("/products","/product-category/**").authenticated()
+		
 		.and().httpBasic()
 		.and().formLogin();
 		
 		 http
          .logout()
              .logoutUrl("/logout") 
-             .logoutSuccessUrl("/login?logout") 
+             .logoutSuccessUrl("/api/login?logout") 
              .invalidateHttpSession(true) 
-             .deleteCookies("JSESSIONID"); 
+             .deleteCookies("Token"); 
 	
 //				.anyRequest().authenticated()
 //      .and().httpBasic()

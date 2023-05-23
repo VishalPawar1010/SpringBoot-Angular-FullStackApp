@@ -24,14 +24,18 @@ public class eComUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Role> roles = user.getRoles();
+		String ROLE_PREFIX = "ROLE_";
 
 		List<SimpleGrantedAuthority> authories = new ArrayList<>();
 
 		for (Role role : roles) {
-			authories.add(new SimpleGrantedAuthority(role.getName()));
+			System.out.println("role -" + role.toString());
+			System.out.println("role -" + role.getName().toString());
+			authories.add(new SimpleGrantedAuthority( role.getName()));
 		}
-
+		System.out.println("authories -" + authories);
 		return authories;
+		
 	}
 
 	@Override

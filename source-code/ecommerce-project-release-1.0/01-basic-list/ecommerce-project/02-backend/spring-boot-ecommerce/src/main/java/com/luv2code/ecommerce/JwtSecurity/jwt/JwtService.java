@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.luv2code.ecommerce.JwtSecurity.jwt.UserDetailForToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.luv2code.ecommerce.security.eComUserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -40,15 +40,15 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetailForToken.getEmail().toString())
                 .claim("id", userDetailForToken.getId().toString())
-//                .claim("role", userDetailForToken.getRole().toString())
+                .claim("role", userDetailForToken.getRoles().toString())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *60 * 24))
-                .setExpiration(new Date(System.currentTimeMillis() + 60 *60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *60 * 24))
+//                .setExpiration(new Date(System.currentTimeMillis() + 60 *60))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
+    public boolean isTokenValid(String token, eComUserDetails userDetails){
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }

@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UserListComponent implements OnInit {
   users: Users[] = [];
+  activeModal: any;
+
   // userNew: Users = new Users(0, '', '', '', '', '', '');
   // userForm: FormGroup;
   // currentRoleId: number;

@@ -36,12 +36,12 @@ public class LoginController {
         return ResponseEntity.ok(loginService.loginRequest(loginDetail));
     }
 	
-	@PostMapping("/logout")
-	  public ResponseEntity<AuthenticationResponse> logout(@RequestBody LoginDetail loginDetail) {
-	    // Perform any necessary cleanup tasks or invalidate the JWT token
-
-	    // Return a success response
-	    return ResponseEntity.ok().build();
-	  }
+//	@PostMapping("/logout")
+//	  public ResponseEntity<AuthenticationResponse> logout(@RequestBody LoginDetail loginDetail) {
+//	    // Perform any necessary cleanup tasks or invalidate the JWT token
+//
+//	    // Return a success response
+//	    return ResponseEntity.ok().build();
+//	  }
 
 }
