@@ -11,6 +11,9 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddUserComponent implements OnInit {
   newUserForm: newUser = new newUser('', '', '', '');
+  errorMessage: String = '';
+  message: string = '';
+  newlyAddedUser: any;
   // roles: String = '';
 
   constructor(
@@ -23,8 +26,16 @@ export class AddUserComponent implements OnInit {
   }
 
   createUser(newUser: newUser): void {
-    this.userService.createUser(newUser).subscribe((newUser) => {
-      // Handle success or show appropriate message
-    });
+    this.userService.createUser(newUser).subscribe(
+      (res) => {
+        this.message = 'User created successfully';
+        console.log('NEW USER = ', res);
+        this.newlyAddedUser = res;
+      },
+      (error) => {
+        this.errorMessage = 'Something went wrong';
+        console.log('ERROR = ', error);
+      }
+    );
   }
 }

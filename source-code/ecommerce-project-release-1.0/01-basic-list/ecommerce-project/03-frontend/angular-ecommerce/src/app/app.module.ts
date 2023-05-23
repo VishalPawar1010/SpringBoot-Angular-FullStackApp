@@ -44,6 +44,7 @@ import { AddUserComponent } from './components/user-list/add-user.component';
 const routes: Routes = [
   {
     path: 'login',
+    canActivate: [AuthenticateGuard],
     component: LoginComponent,
   },
   {
@@ -72,15 +73,16 @@ const routes: Routes = [
     component: ProductListComponent,
   },
   {
-    path: '',
-    redirectTo: '/products',
-    pathMatch: 'full',
-  },
-  {
     path: 'add-user',
     canActivate: [AuthenticateGuard],
     component: AddUserComponent,
   },
+  {
+    path: '',
+    redirectTo: '/products',
+    pathMatch: 'full',
+  },
+
   {
     path: '**',
     redirectTo: '/products',

@@ -42,7 +42,7 @@
   </form>
 </div> -->
 
-<<!-- Add a form for creating a new user -->
+<!-- Add a form for creating a new user -->
 <div class="container">
   <form
     class="col-8"
@@ -105,4 +105,19 @@
       </div>
     </div>
   </form>
+  <div class="container text-center">
+    <span
+      *ngIf="message"
+      class="mb-4 text-center font-weight-bold text-success"
+    >
+      {{ message }}
+      <!-- {{ newlyAddedUser | json }} -->
+    </span>
+
+    <span
+      *ngIf="errorMessage"
+      class="mb-4text-center font-weight-bold text-alert"
+      >{{ errorMessage }}</span
+    >
+  </div>
 </div>

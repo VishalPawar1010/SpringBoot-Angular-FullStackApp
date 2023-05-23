@@ -34,6 +34,14 @@
         <td>{{ tempUser.lastName }}</td>
         <!-- <td>{{ tempUser.roles }}</td> -->
         <!-- <td>{{ tempUser.enabled }}</td> -->
+        <td>
+          <!-- <button class="btn btn-primary btn-sm" (click)="editUser(tempUser)">
+            Update
+          </button> -->
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(tempUser)">
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
