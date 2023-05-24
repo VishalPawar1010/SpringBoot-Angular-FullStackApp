@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.luv2code.ecommerce.entity.User;
 
-import lombok.var;
 
 @Repository
 @CrossOrigin("http://localhost:4200")
