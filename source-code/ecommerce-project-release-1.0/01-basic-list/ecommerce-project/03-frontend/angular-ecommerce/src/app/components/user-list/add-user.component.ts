@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Users, newUser } from 'src/app/common/users';
+import Users, { newUser } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 

@@ -5,9 +5,9 @@ export class Users {
     public password: string,
     public firstName: string,
     public lastName: string,
-    public roles: string,
-    public enabled: string,
-    public photos: string
+    // public roles: string,
+    public photos: string,
+    public enabled: boolean
   ) {}
 }
 export class newUser {

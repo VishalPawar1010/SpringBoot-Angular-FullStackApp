@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  title: any = 'angular';
   constructor(private authService: AuthService) {}
 
   logout() {
