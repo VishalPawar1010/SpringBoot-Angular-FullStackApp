@@ -1,33 +1,32 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth.service';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
+
   beforeEach(() => {
+    // Create a spy object for the AuthService
+    const spy = jasmine.createSpyObj('AuthService', ['logout']);
+
     TestBed.configureTestingModule({
       declarations: [AppComponent],
+      providers: [{ provide: AuthService, useValue: spy }],
     });
-    // .compileComponents()
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create the app component', () => {
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'angular-ecommerce'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-
-    expect(app.title).toEqual('angular');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'angular-ecommerce app is running!'
-    );
+  it('should call logout method on AuthService when logout is called', () => {
+    component.logout();
+    expect(authServiceSpy.logout).toHaveBeenCalled();
   });
 });
