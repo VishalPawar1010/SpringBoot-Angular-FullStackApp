@@ -79,13 +79,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/products',
+    redirectTo: '/users',
     pathMatch: 'full',
   },
 
   {
     path: '**',
-    redirectTo: '/products',
+    redirectTo: '/users',
     pathMatch: 'full',
   },
 ];

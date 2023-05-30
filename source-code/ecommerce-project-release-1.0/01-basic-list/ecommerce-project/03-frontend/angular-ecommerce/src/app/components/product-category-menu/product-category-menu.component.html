@@ -2,7 +2,7 @@
   <nav class="navbar-sidebar-wrap">
     <ul class="list-styled navbar-list">
       <li>
-        <a href="/products">Products</a>
+        <a routerLink="/products" routerLinkActive="active-link">Products</a>
       </li>
       <ol class="list-group navbar-list">
         <li *ngFor="let tempProductCategory of productCategory">
@@ -13,35 +13,14 @@
           >
         </li>
       </ol>
-
-      <!-- <ol class="list-group navbar-list">
-        <li>
-          <a routerLink="category/1" routerLinkActive="active-link">Books</a>
-        </li>
-        <li>
-          <a routerLink="/category/2" routerLinkActive="active-link"
-            >Coffee Mugs</a
-          >
-        </li>
-        <li>
-          <a routerLink="/category/3" routerLinkActive="active-link"
-            >Mouse Pads</a
-          >
-        </li>
-        <li>
-          <a routerLink="/category/4" routerLinkActive="active-link"
-            >Luggage Tags</a
-          >
-        </li>
-      </ol> -->
     </ul>
     <hr />
     <ul class="list-styled navbar-list">
       <li>
-        <a href="/users">Users</a>
+        <a routerLink="/users" routerLinkActive="active-link">Users</a>
       </li>
       <li>
-        <a href="/roles">Roles</a>
+        <a routerLink="/roles" routerLinkActive="active-link">Roles</a>
       </li>
     </ul>
   </nav>

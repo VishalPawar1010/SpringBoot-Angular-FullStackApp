@@ -28,7 +28,7 @@
         />
       </a>
     </div>
-    <app-product-category-menu></app-product-category-menu>
+    <app-product-category-menu *ngIf="isLoggedIn"></app-product-category-menu>
   </aside>
   <!-- END MENU SIDEBAR-->
 
@@ -55,7 +55,12 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </a>
             </div> -->
-            <button class="btn btn-danger" color="accent" (click)="logout()">
+            <button
+              class="btn btn-danger"
+              color="accent"
+              data-testid="logout"
+              (click)="logout()"
+            >
               Logout
             </button>
           </div>

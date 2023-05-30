@@ -32,4 +32,24 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(authService).toBeTruthy();
   });
+
+  it('should logout the user and navigate to the login page', fakeAsync(() => {
+    spyOn(router, 'navigate');
+    authService.logout();
+    const req = httpTestingController.expectOne('/api/logout');
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+
+    expect(sessionStorage.getItem('token')).toBeNull();
+
+    authService.isLoggedIn.subscribe((isLoggedIn) => {
+      expect(isLoggedIn).toBeFalse();
+    });
+
+    expect(router.navigate).toHaveBeenCalledWith(['/login']);
+
+    tick();
+
+    httpTestingController.verify();
+  }));
 });

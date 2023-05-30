@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   model: any = {};
   token: any = {};
+  loginError = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -22,15 +28,17 @@ export class LoginComponent implements OnInit {
         email: this.model.username,
         password: this.model.password,
       })
-      .subscribe((res) => {
-        if (res) {
+      .subscribe({
+        next: (res) => {
           this.token = res.token;
           sessionStorage.setItem('token', this.token);
+          this.authService.setLogin();
           this.router.navigate(['users']);
-          // console.log(sessionStorage.getItem('token'));
-        } else {
-          alert('Authentication failed.');
-        }
+        },
+        error: (err) => {
+          this.loginError = 'Invalid user email or password'; // Set the loginError property
+          console.log('ERROR = ', err);
+        },
       });
   }
 }

@@ -1,11 +1,5 @@
 import { Product } from './product';
 
-// describe('Product', () => {
-//   it('should create an instance', () => {
-//     // expect(new Product()).toBeTruthy();
-//     pending();
-//   });
-// });
 describe('Product', () => {
   it('should create a Product instance', () => {
     const product = new Product(
