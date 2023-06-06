@@ -118,9 +118,6 @@ public class UserRepositoryTests {
 	        assertEquals("Ramesh", testUser.getFirstName());
 	        assertEquals("Patel", testUser.getLastName());
 	        assertTrue(testUser.getRoles().isEmpty());
+	        
 	    }
-
-	
-
-	
 }

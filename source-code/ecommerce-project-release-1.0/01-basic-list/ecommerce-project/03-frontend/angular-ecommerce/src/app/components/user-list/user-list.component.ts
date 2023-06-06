@@ -3,6 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Roles } from 'src/app/common/roles';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @Component({
   selector: 'app-user-list',
@@ -11,25 +15,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UserListComponent implements OnInit {
   users: Users[] = [];
-  activeModal: any;
+  selectedUser: Users = new Users(0, '', '', '', '', '', false, []);
 
-  // userNew: Users = new Users(0, '', '', '', '', '', '');
-  // userForm: FormGroup;
-  // currentRoleId: number;
+  activeModal: any;
+  studentToUpdate: Users[] = [];
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router // private formBuilder: FormBuilder
-  ) {
-    // this.userForm = this.formBuilder.group({
-    //   name: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    // });
-  }
+    private router: Router,
+    private http: HttpClient,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
       this.listUsers();
+      // this.getUserData();
     });
   }
 
@@ -44,11 +45,32 @@ export class UserListComponent implements OnInit {
     // }
 
     this.userService.getUserList().subscribe((data) => {
+      console.log(data);
       this.users = data;
     });
   }
+
   goToAddUser() {
     this.router.navigate(['add-user']);
+  }
+  // goToUpdateUser(user: Users) {
+  //   this.router.navigate(['update-user'], { state: { user } });
+  // }
+
+  openUpdateUser(userToBeUpdated: any) {
+    const modalRef = this.modalService.open(UpdateUserComponent);
+    modalRef.componentInstance.props = { user: { ...userToBeUpdated } };
+
+    modalRef.result.then((res) => {
+      console.log('NEW USER = ', res);
+      this.userService.updateUser(res.id, res).subscribe((updatedUser) => {
+        const index = this.users.findIndex((u) => u.id === updatedUser.id);
+        if (index !== -1) {
+          this.users[index] = updatedUser;
+          console.log('User updated successfully');
+        }
+      });
+    });
   }
 
   // createUser(user: Users): void {
@@ -57,15 +79,40 @@ export class UserListComponent implements OnInit {
   //     // Handle success or show appropriate message
   //   });
   // }
-  updateUser(user: Users): void {
-    this.userService.updateUser(user.id, user).subscribe((updatedUser) => {
-      const index = this.users.findIndex((u) => u.id === updatedUser.id);
-      if (index !== -1) {
-        this.users[index] = updatedUser;
-        // Handle success or show appropriate message
-      }
-    });
-  }
+  // getUserDataById(user: Users) {
+  //   debugger;
+  //   this.selectedUser = user;
+  //   console.log('update user =' + user);
+  // }
+
+  // openEditModal(user: Users) {
+  //   this.selectedUser = { ...user };
+  //   this.activeModal = 'update';
+  //   $('#updateUserModal').modal('show'); // Open the modal
+  // }
+
+  // updateUser() {
+  //   this.index = this.users.findIndex((u) => u.id === updatedUser.id);
+  //       if (index !== -1) {
+  //         this.users[index] = updatedUser;
+  //         // HauserService
+  //     .updateUser(this.selectedUser.id, this.selectedUser)
+  //     .subscribe((updatedUser) => {
+  //       const ndle success or show appropriate message
+  //       }
+  //       $('#updateUserModal').modal('hide');
+  //     });
+  // }
+
+  // updateUser(user: Users): void {
+  //   this.userService.updateUser(user.id, user).subscribe((updatedUser) => {
+  //     const index = this.users.findIndex((u) => u.id === updatedUser.id);
+  //     if (index !== -1) {
+  //       this.users[index] = updatedUser;
+  //       // Handle success or show appropriate message
+  //     }
+  //   });
+  // }
   deleteUser(user: Users): void {
     this.userService.deleteUser(user.id).subscribe(() => {
       this.users = this.users.filter((u) => u.id !== user.id);

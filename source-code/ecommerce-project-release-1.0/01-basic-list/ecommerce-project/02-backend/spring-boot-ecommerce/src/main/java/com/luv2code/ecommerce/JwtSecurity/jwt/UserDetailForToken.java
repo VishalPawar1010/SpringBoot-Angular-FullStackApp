@@ -58,12 +58,5 @@ public class UserDetailForToken {
 		this.id = id;
 		this.roles = roles;
 	}
-	
-	
-
-
-	
-
-
 
 }
