@@ -99,17 +99,56 @@
           class="form-control"
         />
       </div>
+      <!-- <div class="form-group" *ngFor="let role of newUserForm.roles;">
+        <label for="role.id">Role Id:</label>
+        <input
+          id="role.id"
+          type="number"
+          name="role.id"
+          required
+          [(ngModel)]="role.id"
+          class="form-control"
+        />
+      </div> -->
       <!-- <div class="form-group">
         <label for="roles[0].id">Role Id:</label>
         <input
           id="roles[0].id"
-          type="text"
+          type="number"
           name="roles[0].id"
           required
-          [(ngModel)]="newUserForm.roles"
+          (ngModel)= "newUserForm.roles[0].id"
           class="form-control"
         />
       </div> -->
+      <!-- <div class="form-group">
+        <label for="roleId">Role Id:</label>
+        <select id="roleId" name="roleId" required [(ngModel)]="newUserForm.roles[0].id" class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div> -->
+      <div class="form-group">
+        <label for="roleId">Role ID:</label>
+        <select
+          id="roleId"
+          type="number"
+          name="roleId"
+          required
+          [(ngModel)]="roleId"
+          class="form-control">
+          <option value="1">1 - Admin</option>
+          <option value="2">2 - Salesperson</option>
+          <option value="3">3 - Editor</option>
+          <option value="4">4 - Shipper</option>
+          <option value="5">5 - Assistant</option>
+        </select>
+      </div>
+      
+      
 
       <div class="mt-3 text-center">
         <button class="btn btn-success" type="submit">Create User</button>
