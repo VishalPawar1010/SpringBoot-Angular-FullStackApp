@@ -10,6 +10,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddUserComponent implements OnInit {
   newUserForm: newUser = new newUser('', '', '', '');
+  // newUserForm: Users = new Users(0, '', '', '','',null,false,[]);
   errorMessage: String = '';
   message: string = '';
   newlyAddedUser: any;
@@ -23,7 +24,19 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
   }
-
+  // createUser(users:Users): void {
+  //   this.userService.createUser(users).subscribe(
+  //     (res) => {
+  //       this.message = 'User created successfully';
+  //       console.log('NEW USER = ', res);
+  //       this.newlyAddedUser = res;
+  //     },
+  //     (error) => {
+  //       this.errorMessage = 'Something went wrong';
+  //       console.log('ERROR = ', error);
+  //     }
+  //   );
+  // }
   createUser(newUser: newUser): void {
     this.userService.createUser(newUser).subscribe(
       (res) => {

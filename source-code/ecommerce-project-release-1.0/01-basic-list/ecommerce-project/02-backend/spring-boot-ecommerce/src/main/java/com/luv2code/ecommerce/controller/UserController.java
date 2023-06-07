@@ -1,15 +1,16 @@
 package com.luv2code.ecommerce.controller;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,31 +47,13 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-//    
-//    @PutMapping("/updateUser")
-//    public ResponseEntity<User> updateUser(@RequestBody User updatedUser) {
-//        Optional<User> userOptional = userRepository.findById(updatedUser.getId());
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//            user.setEmail(updatedUser.getEmail());
-//            user.setPassword(updatedUser.getPassword());
-//            user.setFirstName(updatedUser.getFirstName());
-//            user.setLastName(updatedUser.getLastName());
-//            user.setEnabled(updatedUser.isEnabled());
-//            // user.setPhotos(updatedUser.getPhotos()); // Uncomment this line if 'photos' property is available in the User class
-//
-//            Set<Role> updatedRoles = updatedUser.getRoles();
-//            if (updatedRoles != null) {
-//                user.getRoles().clear(); // Clear existing roles
-//                user.getRoles().addAll(updatedRoles); // Set new roles
-//            }
-//
-//            User savedUser = userRepository.save(user);
-//            return ResponseEntity.ok(savedUser);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PostMapping("/users")
+    public ResponseEntity<User> addUser(@RequestBody User newUser) {
+        User createdUser = userRepository.save(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
+
+
 
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUserById(@PathVariable Integer id, @RequestBody User updatedUser) {

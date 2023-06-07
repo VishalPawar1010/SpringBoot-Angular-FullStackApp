@@ -31,6 +31,7 @@ export class UpdateUserComponent implements OnInit {
     console.log('PROPS = ', this.props);
 
     this.user = this.props.user;
+    console.log('updated PROPS = ', this.user);
   }
 
   close() {
