@@ -13,7 +13,7 @@ export class AuthService {
   logout() {
     this.http.post('/api/logout', {}).subscribe(
       () => {
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         // sessionStorage.removeItem('user');
         this.isLoggedIn.next(false);
         this.router.navigate(['/login']);

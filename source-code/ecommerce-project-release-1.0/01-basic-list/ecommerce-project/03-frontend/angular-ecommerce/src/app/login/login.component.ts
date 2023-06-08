@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.token = res.token;
-          sessionStorage.setItem('token', this.token);
+          localStorage.setItem('token', this.token);
           // localStorage.setItem('token', this.token);
           this.authService.setLogin();
           this.router.navigate(['users']);

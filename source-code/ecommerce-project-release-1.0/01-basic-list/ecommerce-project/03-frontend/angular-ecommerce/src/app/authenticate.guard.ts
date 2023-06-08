@@ -22,7 +22,7 @@ export class AuthenticateGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let token = sessionStorage.getItem('token');
+    let token = localStorage.getItem('token');
     console.log('TOKEN = ', token);
     console.log('URL = ', state.url);
 

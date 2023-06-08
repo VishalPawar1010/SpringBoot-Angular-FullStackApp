@@ -40,7 +40,7 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush({});
 
-    expect(sessionStorage.getItem('token')).toBeNull();
+    expect(localStorage.getItem('token')).toBeNull();
 
     authService.isLoggedIn.subscribe((isLoggedIn) => {
       expect(isLoggedIn).toBeFalse();
