@@ -60,10 +60,12 @@ export class UserListComponent implements OnInit {
   // }
 
   openUpdateUser(userToBeUpdated: any) {
-    if (this.authService.isLoggedIn.value) {
-      this.router.navigate(['/login']);
-      return;
-    }
+    console.log("entering update modal value == ",this.authService.isLoggedIn.value);
+    // if (!this.authService.isLoggedIn.value) {
+    //   console.log("in update modal value == ",this.authService.isLoggedIn.value);
+    //   this.router.navigate(['/login']);
+    //   // return;
+    // }
     const modalRef = this.modalService.open(UpdateUserComponent);
     modalRef.componentInstance.props = { user: { ...userToBeUpdated } };
 
@@ -79,51 +81,14 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  // createUser(user: Users): void {
-  //   this.userService.createUser(user).subscribe((newUser) => {
-  //     this.users.push(newUser);
-  //     // Handle success or show appropriate message
-  //   });
-  // }
-  // getUserDataById(user: Users) {
-  //   debugger;
-  //   this.selectedUser = user;
-  //   console.log('update user =' + user);
-  // }
 
-  // openEditModal(user: Users) {
-  //   this.selectedUser = { ...user };
-  //   this.activeModal = 'update';
-  //   $('#updateUserModal').modal('show'); // Open the modal
-  // }
-
-  // updateUser() {
-  //   this.index = this.users.findIndex((u) => u.id === updatedUser.id);
-  //       if (index !== -1) {
-  //         this.users[index] = updatedUser;
-  //         // HauserService
-  //     .updateUser(this.selectedUser.id, this.selectedUser)
-  //     .subscribe((updatedUser) => {
-  //       const ndle success or show appropriate message
-  //       }
-  //       $('#updateUserModal').modal('hide');
-  //     });
-  // }
-
-  // updateUser(user: Users): void {
-  //   this.userService.updateUser(user.id, user).subscribe((updatedUser) => {
-  //     const index = this.users.findIndex((u) => u.id === updatedUser.id);
-  //     if (index !== -1) {
-  //       this.users[index] = updatedUser;
-  //       // Handle success or show appropriate message
-  //     }
-  //   });
-  // }
   deleteUser(user: Users): void {
-    if (this.authService.isLoggedIn.value) {
-      this.router.navigate(['/login']);
-      return;
-    }
+    // console.log("entering delete value == ",this.authService.isLoggedIn.value);
+    // if (!this.authService.isLoggedIn.value) {
+    //   console.log("in delete value == ",this.authService.isLoggedIn.value);
+    //   this.router.navigate(['/login']);
+    //   return;
+    // }
     this.userService.deleteUser(user.id).subscribe(() => {
       this.users = this.users.filter((u) => u.id !== user.id);
       // Handle success or show appropriate message

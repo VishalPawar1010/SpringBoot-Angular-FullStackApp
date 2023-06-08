@@ -45,7 +45,7 @@ import { UpdateUserComponent } from './components/user-list/update-user/update-u
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/users',
     pathMatch: 'full',
   },
   {

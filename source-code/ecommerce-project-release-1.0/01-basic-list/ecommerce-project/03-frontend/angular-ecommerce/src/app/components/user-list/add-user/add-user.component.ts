@@ -8,15 +8,17 @@ import { Roles } from 'src/app/common/roles';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
+  styleUrls:['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
   // newUserForm: newUser = new newUser('', '', '', '');
 
-  newUserForm: Users = new Users(0, '', '', '','',null,false,[]);
+  newUserForm: Users = new Users(0, '', '', '','','',false,[]);
   errorMessage: String = '';
   message: string = '';
   newlyAddedUser: any;
   roleId: any;
+  selectedPhoto: String | Blob;
   
   // roles: String = '';
 
@@ -37,6 +39,13 @@ export class AddUserComponent implements OnInit {
     const role = new Roles(roleId, null, null);
 
     users.roles.push(role);
+      // Convert the photo to Base64
+      // if (this.selectedPhoto) {
+      //   users.photos = this.selectedPhoto;
+      // }
+      const formData = new FormData();
+      formData.append('user', JSON.stringify(users)); // Convert the user object to JSON string and append it
+      formData.append('file', this.selectedPhoto);
     
     console.log("REQUEST for new user = ",users);
     this.userService.createUser(users).subscribe(
@@ -51,17 +60,17 @@ export class AddUserComponent implements OnInit {
       }
     );
   }
-  // createUser(newUser: newUser): void {
-  //   this.userService.createUser(newUser).subscribe(
-  //     (res) => {
-  //       this.message = 'User created successfully';
-  //       console.log('NEW USER = ', res);
-  //       this.newlyAddedUser = res;
-  //     },
-  //     (error) => {
-  //       this.errorMessage = 'Something went wrong';
-  //       console.log('ERROR = ', error);
-  //     }
-  //   );
-  // }
+ 
+
+onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+
+  if (file && file.size <= 2 * 1024 * 1024 && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+    this.selectedPhoto = file;
+  } else {
+    // Handle file selection error (size or format not supported)
+    this.selectedPhoto = undefined;
+  }
+}
+  
 }
