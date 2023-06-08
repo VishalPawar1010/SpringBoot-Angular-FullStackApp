@@ -7,12 +7,13 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticateGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,6 +24,10 @@ export class AuthenticateGuard implements CanActivate {
     | boolean
     | UrlTree {
     let token = localStorage.getItem('token');
+    if (token)
+      this.authService.setLoginStatus(true);
+    else
+      this.authService.setLoginStatus(false);
     console.log('TOKEN = ', token);
     console.log('URL = ', state.url);
 

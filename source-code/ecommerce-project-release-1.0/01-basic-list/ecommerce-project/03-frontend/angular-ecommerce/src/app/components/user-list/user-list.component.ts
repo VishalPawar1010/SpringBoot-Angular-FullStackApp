@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Roles } from 'src/app/common/roles';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -24,7 +25,8 @@ export class UserListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authService :AuthService
   ) {}
 
   ngOnInit() {
@@ -58,6 +60,10 @@ export class UserListComponent implements OnInit {
   // }
 
   openUpdateUser(userToBeUpdated: any) {
+    if (this.authService.isLoggedIn.value) {
+      this.router.navigate(['/login']);
+      return;
+    }
     const modalRef = this.modalService.open(UpdateUserComponent);
     modalRef.componentInstance.props = { user: { ...userToBeUpdated } };
 
@@ -114,6 +120,10 @@ export class UserListComponent implements OnInit {
   //   });
   // }
   deleteUser(user: Users): void {
+    if (this.authService.isLoggedIn.value) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.userService.deleteUser(user.id).subscribe(() => {
       this.users = this.users.filter((u) => u.id !== user.id);
       // Handle success or show appropriate message

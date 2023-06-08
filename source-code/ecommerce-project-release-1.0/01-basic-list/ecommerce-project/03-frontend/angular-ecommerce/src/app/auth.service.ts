@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = new Subject<boolean>();
+  isLoggedIn = new BehaviorSubject<boolean>(false);
+  // private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  // isLoggedIn$ = this.isLoggedInSubject.asObservable();
   constructor(private http: HttpClient, private router: Router) {}
 
   logout() {
@@ -15,7 +17,8 @@ export class AuthService {
       () => {
         localStorage.removeItem('token');
         // sessionStorage.removeItem('user');
-        this.isLoggedIn.next(false);
+        // this.isLoggedInSubject.next(false);
+        this.setLoginStatus(false);
         this.router.navigate(['/login']);
       },
       (error) => {
@@ -24,7 +27,8 @@ export class AuthService {
     );
   }
 
-  setLogin() {
-    this.isLoggedIn.next(true);
+  setLoginStatus(isLoggedIn: boolean) {
+    // this.isLoggedInSubject.next(isLoggedIn);
+    this.isLoggedIn.next(isLoggedIn);
   }
 }

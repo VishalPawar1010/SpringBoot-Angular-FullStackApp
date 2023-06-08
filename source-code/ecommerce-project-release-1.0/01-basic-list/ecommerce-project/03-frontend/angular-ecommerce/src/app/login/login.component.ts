@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           this.token = res.token;
           localStorage.setItem('token', this.token);
           // localStorage.setItem('token', this.token);
-          this.authService.setLogin();
+          this.authService.setLoginStatus(true);
           this.router.navigate(['users']);
         },
         error: (err) => {

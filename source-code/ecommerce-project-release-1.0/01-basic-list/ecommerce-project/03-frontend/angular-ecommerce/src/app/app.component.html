@@ -1,35 +1,33 @@
 
 
 <div class="page-wrapper">
-  <aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-      <a href="#">
-        <img
-          src="assets/images/argushop-logo.png"
-          alt="ArguShop"
-          class="img-responsive"
-        />
-      </a>
-    </div>
-    <!-- <app-product-category-menu></app-product-category-menu> -->
-  </aside>
-  <!-- END MENU SIDEBAR-->
-
-  <!-- PAGE CONTAINER-->
-  <div class="page-container">
+  <div class="page-container" >
     <!-- HEADER DESKTOP-->
-    <header class="header-desktop">
+    <header class="header-desktop"  *ngIf="isLoggedIn">
+      <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+          <a href="#">
+            <img
+              src="assets/images/argushop-logo.png"
+              alt="ArguShop"
+              class="img-responsive"
+            />
+          </a>
+        </div>
+      </aside>
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
             <div class="btn-group" role="group" aria-label="Users and Roles Buttons">
               <div class="mr-2">
-                <button class="btn btn-secondary mr-2" routerLink="/users" routerLinkActive="active-link">Users</button>
+                <button class="btn btn-secondary" (click)="goToUsers()">Users</button>
+                <!-- <button class="btn btn-secondary mr-2" routerLink="/users" routerLinkActive="active-link">Users</button> -->
               </div>
               <!-- <div class="ml-2">
                 <button class="btn btn-secondary ml-2" routerLink="/roles" routerLinkActive="active-link">Roles</button>
               </div> -->
             </div>
+            
     
             <div class="account-wrap"></div>
             
@@ -38,7 +36,7 @@
               color="accent"
               data-testid="logout"
               (click)="logout()"
-              *ngIf="isLoggedIn"
+             
             >
               Logout
             </button>
