@@ -1,5 +1,6 @@
 package com.luv2code.ecommerce.entity;
 
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,11 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.luv2code.ecommerce.dto.ImageUtil;
 
 @Entity
 @Table(name = "users")
@@ -22,51 +28,49 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(length = 64, nullable = false)
 	private String password;
-	
+
 	@Column(name = "first_name", length = 45, nullable = false)
 	private String firstName;
-	
+
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
-	
-	@Column(length = 64)
-	private String photos;
-	
+
+	@Lob
+	@Column(name = "photos", columnDefinition = "LONGBLOB")
+	private byte[] photos;
+
+	@Transient
+	private MultipartFile photoFile;
+
 	private boolean enabled;
-	
+
 	@ManyToMany
-	@JoinTable(
-			name = "users_roles",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id")
-			)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@Fetch(FetchMode.JOIN)
 	private Set<Role> roles = new HashSet<>();
-	
+
 	public User() {
 	}
-	
+
 	public User(String email, String firstName, String lastName) {
 //		super();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+
 	public User(String email, String password, String firstName, String lastName) {
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -108,12 +112,21 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getPhotos() {
+	public byte[] getPhotos() {
+//		byte[] decompressedData = ImageUtil.decompressImage(photos);
 		return photos;
 	}
 
-	public void setPhotos(String photos) {
+	public void setPhotos(byte[] photos) {
 		this.photos = photos;
+	}
+
+	public MultipartFile getPhotoFile() {
+		return photoFile;
+	}
+
+	public void setPhotoFile(MultipartFile photoFile) {
+		this.photoFile = photoFile;
 	}
 
 	public boolean isEnabled() {
@@ -131,16 +144,33 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
+
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}
+//	public byte[] getDecompressedPhotos() {
+//	    byte[] decompressedData = ImageUtil.decompressImage(photos);
+//	   
+//	    return decompressedData;
+//	}
+
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", roles=" + roles + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", enabled=" + enabled + ", roles=" + roles + "]";
 	}
-	
-	
+
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+//				+ ", roles=" + roles + "]";
+//	}
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+//				+ ", lastName=" + lastName + ", photos=" + Arrays.toString(photos) + ", enabled=" + enabled + ", roles="
+//				+ roles + "]";
+//	}
+
 }

@@ -8,7 +8,8 @@ export class Users {
     public lastName: string,
     public photos: any,
     public enabled: boolean,
-    public roles: Roles[]
+    public roles: Roles[],
+
   ) {}
 }
 export class newUser {

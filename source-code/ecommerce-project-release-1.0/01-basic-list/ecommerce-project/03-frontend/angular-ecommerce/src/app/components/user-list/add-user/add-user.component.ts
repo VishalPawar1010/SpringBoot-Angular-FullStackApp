@@ -39,13 +39,10 @@ export class AddUserComponent implements OnInit {
     const role = new Roles(roleId, null, null);
 
     users.roles.push(role);
-      // Convert the photo to Base64
-      // if (this.selectedPhoto) {
-      //   users.photos = this.selectedPhoto;
-      // }
-      const formData = new FormData();
-      formData.append('user', JSON.stringify(users)); // Convert the user object to JSON string and append it
-      formData.append('file', this.selectedPhoto);
+  
+    const formData = new FormData();
+    formData.append('user', JSON.stringify(users)); // Convert the user object to JSON string and append it
+      // formData.append('file', this.selectedPhoto);
     
     console.log("REQUEST for new user = ",users);
     this.userService.createUser(users).subscribe(

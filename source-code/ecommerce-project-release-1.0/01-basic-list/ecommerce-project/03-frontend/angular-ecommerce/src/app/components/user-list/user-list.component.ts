@@ -16,10 +16,13 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class UserListComponent implements OnInit {
   users: Users[] = [];
-  selectedUser: Users = new Users(0, '', '', '', '', '', false, []);
+  selectedUser: Users = new Users(0, '', '', '', '', null, false, []);
+  getImage :any;
+  base64Image:any;
 
   activeModal: any;
   studentToUpdate: Users[] = [];
+  getResponse: any;
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -36,21 +39,25 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  
+
   listUsers() {
-    // check if given id is available
-    // const hasRoleId: boolean = this.route.snapshot.paramMap.has('id');
-
-    // if (hasRoleId) {
-    //   this.currentRoleId = +this.route.snapshot.paramMap.get('id')!;
-    // }else{
-    //   this.currentRoleId
-    // }
-
     this.userService.getUserList().subscribe((data) => {
-      console.log(data);
-      this.users = data;
+      // this.users = data;
+      console.log( 'users list' ,this.users);
+      this.users = data.map((user) => {
+        // this.getResponse = user;
+        this.getImage = user.photos;
+        this.base64Image = 'data:image/jpeg;base64,' + this.getImage;
+        return { ...user, photos:this.base64Image};
+      });
     });
   }
+  
+  
+  
+  
+  
 
   goToAddUser() {
     this.router.navigate(['add-user']);

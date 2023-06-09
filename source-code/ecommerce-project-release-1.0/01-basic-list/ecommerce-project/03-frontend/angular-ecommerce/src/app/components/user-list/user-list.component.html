@@ -22,13 +22,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let tempUser of users">
+ 
         <td class="align-middle">
-          <img
-            src="assets/images/Users/{{ tempUser.photos }}"
+          <div *ngIf="tempUser.photos">
+            <img
+            [src]="tempUser.photos"
             class="sm-auto rounded img-fluid"
             style="width: 80px"
           />
+          </div>
+
         </td>
+        
         <td>{{ tempUser.email }}</td>
         <td>{{ tempUser.firstName }}</td>
         <td>{{ tempUser.lastName }}</td>

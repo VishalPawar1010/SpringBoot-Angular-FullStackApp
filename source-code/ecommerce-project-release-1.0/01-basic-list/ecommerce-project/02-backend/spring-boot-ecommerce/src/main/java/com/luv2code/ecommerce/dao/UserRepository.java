@@ -12,22 +12,21 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.luv2code.ecommerce.entity.User;
 
-
 @Repository
 @CrossOrigin("http://localhost:4200")
 public interface UserRepository extends JpaRepository<User, Integer> {
-	Page<User> findById(@Param("id") Integer id,Pageable Pageable);
-	
+	Page<User> findById(@Param("id") Integer id, Pageable Pageable);
+
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 	public User getUserByEmail(@Param("email") String email);
-	
-//	 User findByEmail(String email);
-	public User findByEmail( String email);
 
-	
+//	 User findByEmail(String email);
+	public User findByEmail(String email);
+
 //	SELECT u FROM User u WHERE u.email = :email
 //	 var findByEmail(String email);
-	
+
 //	Page<User> findByRoleId(@Param("roles") String string,Pageable Pageable);
+
 
 }
