@@ -20,7 +20,7 @@ export class AddUserComponent implements OnInit {
   newlyAddedUser: any;
   roleId: any;
   selectedPhoto: any;
-  selectedPhotoURL: any;
+  selectedPhotoURL: any = 'assets/images/avatar.png'; // Default photo URL
   
   // roles: String = '';
 
@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router ,
-    private sanitizer: DomSanitizer// private formBuilder: FormBuilder
+  
   ) {}
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
@@ -44,11 +44,13 @@ export class AddUserComponent implements OnInit {
     users.roles.push(role);
   
     const formData = new FormData();
-    formData.append('photoFile', this.selectedPhoto as File);
-    console.log('photoFile', this.selectedPhoto as File); // Handle this.selectedPhoto as a File
-    formData.append('newUser', JSON.stringify(users));
-    console.log('newUser', JSON.stringify(users));
     
+    formData.append('newUser', JSON.stringify(users));
+    formData.append('photoFile', this.selectedPhoto as File);
+
+  
+    console.log('newUser:', JSON.stringify(users));
+    console.log('photoFile:', this.selectedPhoto || this.selectedPhotoURL);    
     console.log("REQUEST for new user = ",users);
     this.userService.createUser(formData).subscribe(
       (res) => {
@@ -74,8 +76,9 @@ export class AddUserComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     } else {
-      this.selectedPhoto = undefined;
-      this.selectedPhotoURL = undefined;
+      this.selectedPhotoURL =  'assets/images/avatar.png';
+      this.selectedPhoto =  'assets/images/avatar.png';
+    
     }
   }
   
