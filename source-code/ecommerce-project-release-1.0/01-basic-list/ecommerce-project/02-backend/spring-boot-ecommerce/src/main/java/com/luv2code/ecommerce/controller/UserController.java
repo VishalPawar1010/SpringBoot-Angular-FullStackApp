@@ -41,7 +41,7 @@ public class UserController {
 		List<User> users = userRepository.findAll();
 		System.out.println("in get users list ");
 		 for (User user : users) {
-		        System.out.println("In getUserForLoop");
+//		        System.out.println("In getUserForLoop");
 		        byte[] photos = user.getPhotos();
 		        if (photos != null) {
 		            byte[] decompressedData = ImageUtil.decompressImage(photos);

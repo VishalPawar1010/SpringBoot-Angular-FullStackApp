@@ -4,6 +4,7 @@ import { Users, newUser } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Roles } from 'src/app/common/roles';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-add-user',
@@ -18,14 +19,16 @@ export class AddUserComponent implements OnInit {
   message: string = '';
   newlyAddedUser: any;
   roleId: any;
-  selectedPhoto: String | Blob;
+  selectedPhoto: any;
+  selectedPhotoURL: any;
   
   // roles: String = '';
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router // private formBuilder: FormBuilder
+    private router: Router ,
+    private sanitizer: DomSanitizer// private formBuilder: FormBuilder
   ) {}
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
@@ -41,11 +44,13 @@ export class AddUserComponent implements OnInit {
     users.roles.push(role);
   
     const formData = new FormData();
-    formData.append('user', JSON.stringify(users)); // Convert the user object to JSON string and append it
-      // formData.append('file', this.selectedPhoto);
+    formData.append('photoFile', this.selectedPhoto as File);
+    console.log('photoFile', this.selectedPhoto as File); // Handle this.selectedPhoto as a File
+    formData.append('newUser', JSON.stringify(users));
+    console.log('newUser', JSON.stringify(users));
     
     console.log("REQUEST for new user = ",users);
-    this.userService.createUser(users).subscribe(
+    this.userService.createUser(formData).subscribe(
       (res) => {
         this.message = 'User created successfully';
         console.log('NEW USER = ', res);
@@ -58,16 +63,22 @@ export class AddUserComponent implements OnInit {
     );
   }
  
-
-onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-
-  if (file && file.size <= 2 * 1024 * 1024 && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-    this.selectedPhoto = file;
-  } else {
-    // Handle file selection error (size or format not supported)
-    this.selectedPhoto = undefined;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+  
+    if (file && file.size <= 2 * 1024 * 1024 && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+      this.selectedPhoto = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedPhotoURL = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.selectedPhoto = undefined;
+      this.selectedPhotoURL = undefined;
+    }
   }
-}
+  
+  
   
 }
