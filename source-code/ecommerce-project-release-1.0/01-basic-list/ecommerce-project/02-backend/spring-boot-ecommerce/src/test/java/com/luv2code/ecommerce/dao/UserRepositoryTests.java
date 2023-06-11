@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.luv2code.ecommerce.entity.Role;
 import com.luv2code.ecommerce.entity.User;
+import com.luv2code.ecommerce.repo.UserRepository;
 
 
 //@DataJpaTest

@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.dao;
+package com.luv2code.ecommerce.repo;
 
 import java.util.Optional;
 

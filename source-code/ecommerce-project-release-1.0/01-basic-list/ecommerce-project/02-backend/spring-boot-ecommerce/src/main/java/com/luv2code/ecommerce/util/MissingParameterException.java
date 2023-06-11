@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.controller;
+package com.luv2code.ecommerce.util;
 
 public class MissingParameterException extends Exception{
     public MissingParameterException() {

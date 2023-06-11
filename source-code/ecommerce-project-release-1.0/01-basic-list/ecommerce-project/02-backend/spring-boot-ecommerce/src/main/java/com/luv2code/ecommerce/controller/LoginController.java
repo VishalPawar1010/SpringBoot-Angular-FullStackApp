@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
+import com.luv2code.ecommerce.security.dao.LoginDetail;
+import com.luv2code.ecommerce.security.service.LoginService;
+import com.luv2code.ecommerce.util.MissingParameterException;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:4200")
@@ -19,12 +24,12 @@ public class LoginController {
 		return "Welcome to home";
 	}
 	
-	private LoginInterface loginService;
+	private LoginService loginService;
 
     @Autowired
     public LoginController(
     		@Qualifier("loginServiceImpl") 
-    		LoginInterface loginService) {
+    		LoginService loginService) {
         this.loginService = loginService;
     }
 

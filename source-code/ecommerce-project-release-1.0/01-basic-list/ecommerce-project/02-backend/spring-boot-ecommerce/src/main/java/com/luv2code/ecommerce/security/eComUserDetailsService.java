@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.luv2code.ecommerce.JwtSecurity.jwt.JwtService;
-import com.luv2code.ecommerce.dao.UserRepository;
 import com.luv2code.ecommerce.entity.User;
+import com.luv2code.ecommerce.repo.UserRepository;
+import com.luv2code.ecommerce.security.service.JwtService;
 
 @Service
 public class eComUserDetailsService implements UserDetailsService {

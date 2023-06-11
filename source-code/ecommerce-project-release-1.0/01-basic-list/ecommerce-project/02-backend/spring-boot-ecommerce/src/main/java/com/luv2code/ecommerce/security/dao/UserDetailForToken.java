@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.JwtSecurity.jwt;
+package com.luv2code.ecommerce.security.dao;
 
 import java.util.HashSet;
 import java.util.Set;

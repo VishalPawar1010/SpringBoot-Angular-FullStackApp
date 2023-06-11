@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.JwtSecurity.jwt;
+package com.luv2code.ecommerce.security;
 
 import java.io.IOException;
 
@@ -15,8 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.luv2code.ecommerce.security.eComUserDetails;
-import com.luv2code.ecommerce.security.eComUserDetailsService;
+import com.luv2code.ecommerce.security.service.JwtService;
 
 //import jakarta.servlet.FilterChain;
 //import jakarta.servlet.ServletException;

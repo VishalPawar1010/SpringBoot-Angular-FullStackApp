@@ -20,7 +20,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.luv2code.ecommerce.dto.ImageUtil;
+import com.luv2code.ecommerce.util.ImageUtil;
 
 @Entity
 @Table(name = "users")

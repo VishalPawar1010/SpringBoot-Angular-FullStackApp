@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.JwtSecurity.jwt;
+package com.luv2code.ecommerce.security.service;
 
 import java.security.Key;
 import java.util.Date;
@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.stereotype.Service;
 
 import com.luv2code.ecommerce.security.eComUserDetails;
+import com.luv2code.ecommerce.security.dao.UserDetailForToken;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

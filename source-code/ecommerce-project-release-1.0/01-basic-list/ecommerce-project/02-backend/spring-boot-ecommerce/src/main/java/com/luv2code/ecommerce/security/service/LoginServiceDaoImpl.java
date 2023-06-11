@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.controller;
+package com.luv2code.ecommerce.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,16 +7,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.luv2code.ecommerce.JwtSecurity.jwt.JwtService;
-import com.luv2code.ecommerce.JwtSecurity.jwt.UserDetailForToken;
-import com.luv2code.ecommerce.dao.UserRepository;
 import com.luv2code.ecommerce.entity.User;
+import com.luv2code.ecommerce.repo.UserRepository;
+import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
+import com.luv2code.ecommerce.security.dao.LoginDetail;
+import com.luv2code.ecommerce.security.dao.UserDetailForToken;
+import com.luv2code.ecommerce.util.MissingParameterException;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class LoginDaoImpl implements LoginInterface {
+public class LoginServiceDaoImpl implements LoginService {
 
 	@Autowired
     private  UserRepository userRepository;

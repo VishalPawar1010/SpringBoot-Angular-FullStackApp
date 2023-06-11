@@ -1,10 +1,11 @@
-package com.luv2code.ecommerce.JwtSecurity;
+package com.luv2code.ecommerce.security.config;
 
 import aj.org.objectweb.asm.TypeReference;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.luv2code.ecommerce.JwtSecurity.jwt.JwtAuthenticationFilter;
+import com.luv2code.ecommerce.security.JwtAuthenticationFilter;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

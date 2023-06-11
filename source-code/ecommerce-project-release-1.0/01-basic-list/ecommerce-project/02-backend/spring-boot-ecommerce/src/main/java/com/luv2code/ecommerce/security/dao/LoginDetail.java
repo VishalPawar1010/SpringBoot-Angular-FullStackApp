@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.controller;
+package com.luv2code.ecommerce.security.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.dao;
+package com.luv2code.ecommerce.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

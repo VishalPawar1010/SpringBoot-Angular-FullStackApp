@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.JwtSecurity.jwt;
+package com.luv2code.ecommerce.security;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.luv2code.ecommerce.entity.Role;
+import com.luv2code.ecommerce.security.dao.UserDetailForToken;
 
 public class UserDetailForTokenTest {
 

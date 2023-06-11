@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.dto;
+package com.luv2code.ecommerce.util;
 
 
 import java.io.ByteArrayOutputStream;

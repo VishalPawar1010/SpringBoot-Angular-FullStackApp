@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.controller;
+package com.luv2code.ecommerce.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,13 +6,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
+import com.luv2code.ecommerce.security.dao.LoginDetail;
+import com.luv2code.ecommerce.util.MissingParameterException;
+
 
 @Qualifier("loginDaoImpl")
 @Service
-public class LoginServiceImpl implements LoginInterface {
+public class LoginServiceImpl implements LoginService {
 
 	@Autowired
-	private LoginInterface loginDao;
+	private LoginService loginDao;
 
 
  	@Override
