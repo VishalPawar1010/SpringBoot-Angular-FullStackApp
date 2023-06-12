@@ -2,15 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ProductService } from './services/product.service';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { RolesListComponent } from './components/roles-list/roles-list.component';
 import { UserService } from './services/user.service';
 import { RolesService } from './services/roles.service';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticateGuard } from './authenticate.guard';
@@ -63,21 +60,7 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
     component: RolesListComponent,
   },
-  {
-    path: 'products',
-    canActivate: [AuthenticateGuard],
-    component: ProductListComponent,
-  },
-  {
-    path: 'category',
-    canActivate: [AuthenticateGuard],
-    component: ProductListComponent,
-  },
-  {
-    path: 'category/:id',
-    canActivate: [AuthenticateGuard],
-    component: ProductListComponent,
-  },
+
   {
     path: 'add-user',
     canActivate: [AuthenticateGuard],
@@ -99,11 +82,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
     UserListComponent,
     AddUserComponent,
     RolesListComponent,
-    ProductCategoryMenuComponent,
     LoginComponent,
     UpdateUserComponent,
   ],
@@ -114,7 +95,6 @@ const routes: Routes = [
     FormsModule,
   ],
   providers: [
-    ProductService,
     UserService,
     RolesService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
