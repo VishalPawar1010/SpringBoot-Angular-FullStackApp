@@ -40,6 +40,10 @@ public class User {
 
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
+	
+    @Column(name="gender", length = 45, nullable = false)
+    private String gender;
+
 
 	@Lob
 	@Column(name = "photos", columnDefinition = "LONGBLOB")
@@ -54,23 +58,6 @@ public class User {
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@Fetch(FetchMode.JOIN)
 	private Set<Role> roles = new HashSet<>();
-
-	public User() {
-	}
-
-	public User(String email, String firstName, String lastName) {
-//		super();
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-
-	public User(String email, String password, String firstName, String lastName) {
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
 
 	public Integer getId() {
 		return id;
@@ -111,9 +98,16 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public byte[] getPhotos() {
-//		byte[] decompressedData = ImageUtil.decompressImage(photos);
 		return photos;
 	}
 
@@ -148,29 +142,30 @@ public class User {
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}
-//	public byte[] getDecompressedPhotos() {
-//	    byte[] decompressedData = ImageUtil.decompressImage(photos);
-//	   
-//	    return decompressedData;
-//	}
+	
+	public User() {
+	}
 
+	public User(String email, String firstName, String lastName) {
+//		super();
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public User(String email, String password, String firstName, String lastName) {
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", enabled=" + enabled + ", roles=" + roles + "]";
 	}
-
-//	@Override
-//	public String toString() {
-//		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-//				+ ", roles=" + roles + "]";
-//	}
-//	@Override
-//	public String toString() {
-//		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-//				+ ", lastName=" + lastName + ", photos=" + Arrays.toString(photos) + ", enabled=" + enabled + ", roles="
-//				+ roles + "]";
-//	}
 
 }

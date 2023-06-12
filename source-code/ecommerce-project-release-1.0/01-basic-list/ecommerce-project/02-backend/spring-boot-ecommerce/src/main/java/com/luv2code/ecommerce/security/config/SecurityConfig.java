@@ -40,19 +40,12 @@ public class SecurityConfig {
 
 		http.authorizeRequests()
 		
-//		.antMatchers("/api/users/**","/api/roles","/api/products").hasAuthority("Admin")
 		.antMatchers("/api/login","/api/logout").permitAll()
-		.antMatchers("/api/products/","/api/product-category/**").hasAnyAuthority("Admin","Editor","Salesperson")
-		.antMatchers("/api/products/","/api/product-category/**").hasAnyAuthority("Admin","Editor","Salesperson")
-		.antMatchers("/api/roles").hasAnyAuthority("Admin","Shipper")
-		.antMatchers("/api/**").hasAuthority("Admin")
+		.antMatchers("/api/roles").hasAnyAuthority("SuperAdmin","Admin")
+		.antMatchers("/api/**").hasAuthority("SuperAdmin")
 		.antMatchers("/home").authenticated()
 		;
 
-//		.antMatchers("/products","/product-category/**").authenticated()
-		
-//		.and().httpBasic()
-//		.and().formLogin();
 		
 		 http
          .logout()

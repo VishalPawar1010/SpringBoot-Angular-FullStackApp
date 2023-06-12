@@ -49,6 +49,11 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    public User addUser(User newUser) {
+        return userRepository.save(newUser);
+    }
+    
+    @Override
     public User addUser(MultipartFile photoFile, String newUserJson) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         User newUser = objectMapper.readValue(newUserJson, User.class);

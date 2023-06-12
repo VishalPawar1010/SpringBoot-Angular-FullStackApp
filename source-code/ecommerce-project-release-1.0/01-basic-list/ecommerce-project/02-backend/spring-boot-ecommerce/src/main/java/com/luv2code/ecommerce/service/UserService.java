@@ -14,6 +14,8 @@ public interface UserService {
     
     User getUserById(Integer id);
     
+    User addUser(User newUser);
+
     User addUser(MultipartFile photoFile, String newUserJson) throws IOException;
     
     User updateUserById(Integer id, User updatedUser);

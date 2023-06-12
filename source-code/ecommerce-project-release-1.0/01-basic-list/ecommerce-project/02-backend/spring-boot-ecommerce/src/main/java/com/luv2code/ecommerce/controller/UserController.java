@@ -42,32 +42,13 @@ public class UserController {
 		this.userService = userService;
 	}
 
-//	private final UserRepository userRepository;
-//
-//	public UserController(UserRepository userRepository) {
-//		this.userRepository = userRepository;
-//	}
-
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
 		List<User> users = userService.getAllUsers();
 		return ResponseEntity.ok(users);
 	}
 
-//	@GetMapping("/users")
-//	public ResponseEntity<List<User>> getAllUsers() {
-//		List<User> users = userRepository.findAll();
-//		System.out.println("in get users list ");
-//		 for (User user : users) {
-////		        System.out.println("In getUserForLoop");
-//		        byte[] photos = user.getPhotos();
-//		        if (photos != null) {
-//		            byte[] decompressedData = ImageUtil.decompressImage(photos);
-//		            user.setPhotos(decompressedData);
-//		        }
-//		    }
-//		return ResponseEntity.ok(users);
-//	}
+
 	@GetMapping("/users/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
 		User user = userService.getUserById(id);
@@ -88,49 +69,22 @@ public class UserController {
 //			return ResponseEntity.notFound().build();
 //		}
 //	}
-//    @PostMapping("/users")
-//    public ResponseEntity<User> addUser(@RequestBody User newUser) {
-//        User createdUser = userRepository.save(newUser);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-//    }
+    @PostMapping("/users")
+    public ResponseEntity<User> addUser(@RequestBody User newUser) {
+        User createdUser = userService.addUser(newUser);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
 
 //	@PostMapping("/users")
-//	public ResponseEntity<User> addUser(@RequestParam("photoFile") MultipartFile photoFile,
+//	public ResponseEntity<User> addUser(@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
 //			@RequestParam("newUser") String newUserJson) {
 //		try {
-//			// Convert the newUserJson string to User object
-//			ObjectMapper objectMapper = new ObjectMapper();
-//			User newUser = objectMapper.readValue(newUserJson, User.class);
-//
-//			// Convert the MultipartFile to a byte array
-//			byte[] photoData = photoFile.getBytes();
-//
-//			// Compress the image data
-//			byte[] compressedData = ImageUtil.compressImage(photoData);
-//
-//			// Set the compressed photo data to the newUser object
-//			newUser.setPhotos(compressedData);
-//
-//			// Save the user to the database
-//			User createdUser = userRepository.save(newUser);
-//
+//			User createdUser = userService.addUser(photoFile, newUserJson);
 //			return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 //		} catch (IOException e) {
-//			// Handle the exception
 //			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 //		}
 //	}
-
-	@PostMapping("/users")
-	public ResponseEntity<User> addUser(@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
-			@RequestParam("newUser") String newUserJson) {
-		try {
-			User createdUser = userService.addUser(photoFile, newUserJson);
-			return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-		} catch (IOException e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
 
 //	@PostMapping("/users")
 //	public ResponseEntity<User> addUser(@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
