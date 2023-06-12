@@ -152,6 +152,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
 
 	public User(String email, String password, String firstName, String lastName) {
 		this.email = email;
@@ -161,11 +162,26 @@ public class User {
 	}
 	
 	
+	
+
+	public User(Integer id, String email, String password, String firstName, String lastName, String gender,
+			byte[] photos, MultipartFile photoFile, boolean enabled, Set<Role> roles) {
+//		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.enabled = enabled;
+		this.roles = roles;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", enabled=" + enabled + ", roles=" + roles + "]";
+				+ ", lastName=" + lastName + ", gender=" + gender + ", enabled=" + enabled + ", roles=" + roles + "]";
 	}
 
+	
 }

@@ -14,7 +14,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class AddUserComponent implements OnInit {
   // newUserForm: newUser = new newUser('', '', '', '');
 
-  newUserForm: Users = new Users(0, '', '', '','','',false,[]);
+  newUserForm: Users = new Users(0, '', '', '','','','',false,[]);
   errorMessage: String = '';
   message: string = '';
   newlyAddedUser: any;
@@ -42,17 +42,9 @@ export class AddUserComponent implements OnInit {
     const role = new Roles(roleId, null, null);
 
     users.roles.push(role);
-  
-    const formData = new FormData();
     
-    formData.append('newUser', JSON.stringify(users));
-    formData.append('photoFile', this.selectedPhoto as File);
-
-  
-    console.log('newUser:', JSON.stringify(users));
-    console.log('photoFile:', this.selectedPhoto || this.selectedPhotoURL);    
     console.log("REQUEST for new user = ",users);
-    this.userService.createUser(formData).subscribe(
+    this.userService.createUser(users).subscribe(
       (res) => {
         this.message = 'User created successfully';
         console.log('NEW USER = ', res);

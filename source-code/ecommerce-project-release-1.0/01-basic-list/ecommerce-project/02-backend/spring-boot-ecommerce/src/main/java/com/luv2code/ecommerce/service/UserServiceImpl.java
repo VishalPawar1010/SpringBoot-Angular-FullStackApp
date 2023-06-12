@@ -30,15 +30,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
-
-        for (User user : users) {
-            byte[] photos = user.getPhotos();
-            if (photos != null) {
-                byte[] decompressedData = ImageUtil.decompressImage(photos);
-                user.setPhotos(decompressedData);
-            }
-        }
-
         return users;
     }
     

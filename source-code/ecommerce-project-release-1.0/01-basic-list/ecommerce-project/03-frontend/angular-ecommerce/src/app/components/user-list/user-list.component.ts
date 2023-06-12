@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class UserListComponent implements OnInit {
   users: Users[] = [];
-  selectedUser: Users = new Users(0, '', '', '', '', null, false, []);
+  selectedUser: Users = new Users(0, '', '', '','', '', null, false, []);
   getImage :any;
   base64Image:any;
 

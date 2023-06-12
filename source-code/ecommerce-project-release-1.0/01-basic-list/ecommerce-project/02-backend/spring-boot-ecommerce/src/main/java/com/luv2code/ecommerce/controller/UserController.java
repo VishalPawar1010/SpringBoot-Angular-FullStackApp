@@ -75,67 +75,6 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-//	@PostMapping("/users")
-//	public ResponseEntity<User> addUser(@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
-//			@RequestParam("newUser") String newUserJson) {
-//		try {
-//			User createdUser = userService.addUser(photoFile, newUserJson);
-//			return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-//		} catch (IOException e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//		}
-//	}
-
-//	@PostMapping("/users")
-//	public ResponseEntity<User> addUser(@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
-//	                                     @RequestParam("newUser") String newUserJson) {
-//	    try {
-//	        // Convert the newUserJson string to User object
-//	        ObjectMapper objectMapper = new ObjectMapper();
-//	        User newUser = objectMapper.readValue(newUserJson, User.class);
-//
-//	        if (photoFile != null && !photoFile.isEmpty()) {
-//	            // Convert the MultipartFile to a byte array
-//	            byte[] photoData = photoFile.getBytes();
-//
-//	            // Compress the image data
-//	            byte[] compressedData = ImageUtil.compressImage(photoData);
-//
-//	            // Set the compressed photo data to the newUser object
-//	            newUser.setPhotos(compressedData);
-//	        } else {
-//	            // If no photo is uploaded, set the default image
-//	            byte[] defaultImageData = getDefaultImageData();
-//	            newUser.setPhotos(defaultImageData);
-//	        }
-//
-//	        // Save the user to the database
-//	        User createdUser = userRepository.save(newUser);
-//
-//	        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-//	    } catch (IOException e) {
-//	        // Handle the exception
-//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//	    }
-//	}
-//
-//	private byte[] getDefaultImageData() throws IOException {
-//	    // Read the default image file
-//	    ClassPathResource resource = new ClassPathResource("/static/user-photos/avatar.png");
-//	    InputStream inputStream = resource.getInputStream();
-//	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//	    byte[] buffer = new byte[4096];
-//	    int bytesRead;
-//	    while ((bytesRead = inputStream.read(buffer)) != -1) {
-//	        outputStream.write(buffer, 0, bytesRead);
-//	    }
-//	    byte[] imageData = outputStream.toByteArray();
-//	    
-//	    // Compress the image data if needed
-//	    byte[] compressedData = ImageUtil.compressImage(imageData);
-//	    
-//	    return compressedData;
-//	}
 
 	@PutMapping("/users/{id}")
 	public ResponseEntity<User> updateUserById(@PathVariable Integer id, @RequestBody User updatedUser) {

@@ -72,43 +72,29 @@
           class="form-control"
         />
       </div>
-      <!-- <div class="form-group">
-        <label for="roles">Roles:</label>
-        <select id="roles" name="roles" multiple [(ngModel)]="user.roles">
-          <option *ngFor="let role of user.roles" [ngValue]="role">{{ role.name }} - {{ role.description }}</option>
+      <div class="form-group">
+        <label for="gender">Gender :</label>
+        <select
+          id="gender"
+          type="text"
+          name="gender"
+          required
+          [(ngModel)]="user.gender"
+          class="form-control">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
-      </div> -->
-      <!-- <div class="form-group">
-        <label for="roles">Roles:</label>
-        <select id="roles" name="roles" [(ngModel)]="user.roles" class="form-control" multiple>
-           <option *ngFor="let role of user.roles" [value]="role">
-            {{ role.name }} - {{ role.description }}
-          </option>
-          <input *ngFor="let role of user.roles" [value]="role"
-        id="roleName"
-        type="text"
-        name="roleName"
-        required
-        [(ngModel)]="role.name"
-        class="form-control"
-      />
-          
-        </select>
-      </div> -->
+      </div>
+    
       <div class="form-group">
         <label for="roles">Roles:</label>
         <select id="roles" name="roles" [(ngModel)]="user.roles" class="form-control" multiple>
           <option *ngFor="let role of user.roles" [value]="role">
-            {{ role.name }} - {{ role.description }}
+            {{ role.name }}
           </option>
         </select>
       </div>
-      
-      <!-- Add a separate field to update the role name -->
-      <!-- <div class="form-group" *ngIf="user.roles.length >= 0">
-        <label for="roles[0].name">Role Name:</label>
-        <input id="roles[0].name" type="text" name="roles[0].name" required [(ngModel)]="user.roles[0].name" class="form-control" />
-      </div> -->
+
       <div class="form-group" *ngIf="user.roles.length >= 0">
         <label for="roles[0].id">Role Id:</label>
         <select id="roles[0].id" type="text" name="roles[0].id" required [(ngModel)]="user.roles[0].id" class="form-control" >
