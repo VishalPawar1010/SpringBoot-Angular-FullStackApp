@@ -14,6 +14,7 @@ import { AuthenticateGuard } from './authenticate.guard';
 import { RequestInterceptor } from './request.interceptor';
 import { AddUserComponent } from './components/user-list/add-user/add-user.component';
 import { UpdateUserComponent } from './components/user-list/update-user/update-user.component';
+import { ViewUserComponent } from './components/user-list/view-user/view-user.component';
 
 // const routes: Routes = [
 //   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
     component: LoginComponent,
   },
+  { path: 'user', canActivate: [AuthenticateGuard], component: ViewUserComponent },
   {
     path: 'users',
     canActivate: [AuthenticateGuard],
@@ -72,6 +74,7 @@ const routes: Routes = [
     component: UpdateUserComponent,
   },
 
+
   {
     path: '**',
     redirectTo: '/users',
@@ -87,6 +90,7 @@ const routes: Routes = [
     RolesListComponent,
     LoginComponent,
     UpdateUserComponent,
+    ViewUserComponent,
   ],
   imports: [
     BrowserModule,

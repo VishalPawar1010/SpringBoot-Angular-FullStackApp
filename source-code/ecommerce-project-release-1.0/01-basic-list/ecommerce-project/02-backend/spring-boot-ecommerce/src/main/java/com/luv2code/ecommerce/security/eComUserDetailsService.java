@@ -1,7 +1,5 @@
 package com.luv2code.ecommerce.security;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,25 +9,26 @@ import org.springframework.stereotype.Service;
 import com.luv2code.ecommerce.entity.User;
 import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.security.service.JwtService;
+import com.luv2code.ecommerce.service.UserService;
 
 @Service
 public class eComUserDetailsService implements UserDetailsService {
 
-//	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
+	
 	@Autowired
 	private JwtService jwtService;
 	
-	public eComUserDetailsService(UserRepository userRepo) {
+	public eComUserDetailsService(UserService userService) {
 		super();
-		this.userRepo = userRepo;
+		this.userService = userService;
 	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 //		User user = userRepo.getUserByEmail(email);
 //		System.out.println("email -" + email);
-		User user = userRepo.findByEmail(email);
+		User user = userService.findByEmail(email);
 //		System.out.println("user - " + user.toString());
 		if (user != null) {
 			return new eComUserDetails(user);

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.security.eComUserDetailsService;
+import com.luv2code.ecommerce.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,16 +22,11 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationConfig {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		return username -> userRepository.getUserByEmail(username)
-//				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-//	}
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new eComUserDetailsService(userRepository);
+		return new eComUserDetailsService(userService);
 	}
 
 	@Bean

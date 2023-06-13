@@ -1,15 +1,11 @@
 package com.luv2code.ecommerce.controller;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,15 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.luv2code.ecommerce.entity.Role;
 import com.luv2code.ecommerce.entity.User;
-import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.service.UserService;
-import com.luv2code.ecommerce.util.ImageUtil;
 
 @RestController
 @RequestMapping("/api")
@@ -48,7 +41,6 @@ public class UserController {
 		return ResponseEntity.ok(users);
 	}
 
-
 	@GetMapping("/users/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
 		User user = userService.getUserById(id);
@@ -58,17 +50,21 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+    @ResponseStatus(value= HttpStatus.OK)
+    @PostMapping("/users/updateImage/{email}")
+    public ResponseEntity<byte[]> updateImage(@RequestParam("profilePic") MultipartFile file, @PathVariable String email) throws IOException{
+    	userService.updateImage(file, email);
+        byte[] image = userService.viewImage(email);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
+    }
 
-//	@GetMapping("/users/{id}")
-//	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
-//		Optional<User> userOptional = userRepository.findById(id);
-//		if (userOptional.isPresent()) {
-//			User user = userOptional.get();
-//			return ResponseEntity.ok(user);
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}
+    @GetMapping("/users/viewImage/{email}")
+    public ResponseEntity<byte[]> viewImage(@PathVariable String email) {
+        byte[] image = userService.viewImage(email);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<User> addUser(@RequestBody User newUser) {
         User createdUser = userService.addUser(newUser);
@@ -116,6 +112,13 @@ public class UserController {
 		userService.deleteUserById(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@DeleteMapping("/users/deleteImage/{email}")
+	public ResponseEntity<Void> deleteImage(@PathVariable String email) {
+	    userService.deleteImageByEmail(email);
+	    return ResponseEntity.noContent().build();
+	}
+
 
 //	@DeleteMapping("/users/{id}")
 //	public ResponseEntity<Void> deleteUserById(@PathVariable Integer id) {

@@ -14,13 +14,22 @@ public interface UserService {
     
     User getUserById(Integer id);
     
+    User findByEmail(String email);
+    
     User addUser(User newUser);
 
-    User addUser(MultipartFile photoFile, String newUserJson) throws IOException;
+//    User addUser(MultipartFile photoFile, String newUser) throws IOException;
     
     User updateUserById(Integer id, User updatedUser);
     
     void deleteUserById(Integer id);
+    
+    User updateImage(MultipartFile file, String email) throws IOException;
+
+    byte[] viewImage(String email);
+    
+    void deleteImageByEmail(String email);
+
 
 
 

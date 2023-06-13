@@ -29,6 +29,19 @@ export class UserService {
     return this.httpClient.post<Users>(this.baseUrl, users);
   }
 
+  getImage(email: string): Observable<any> {
+    // const url = `/viewImage/${email}`;
+    console.log(email);
+    return this.httpClient.get(`${this.baseUrl}/viewImage/${email}`, { responseType: 'blob' });
+  }
+  updateProfilePic(formData:FormData, email: string): Observable<any> {;
+
+    return this.httpClient.post(`${this.baseUrl}/updateImage/${email}`, formData);
+  }
+  deleteProfilePic(email: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/deleteImage/${email}`);
+  }
+
   updateUser(id: number, user: Users): Observable<Users> {
     return this.httpClient.put<Users>(`${this.baseUrl}/${id}`, user);
   }

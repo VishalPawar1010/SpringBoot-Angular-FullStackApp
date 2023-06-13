@@ -12,6 +12,7 @@ import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
 import com.luv2code.ecommerce.security.dao.LoginDetail;
 import com.luv2code.ecommerce.security.dao.UserDetailForToken;
+import com.luv2code.ecommerce.service.UserService;
 import com.luv2code.ecommerce.util.MissingParameterException;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginServiceDaoImpl implements LoginService {
 
 	@Autowired
-    private  UserRepository userRepository;
+	private UserService userService;
 	
 	@Autowired
     private  JwtService jwtService;
@@ -48,7 +49,7 @@ public class LoginServiceDaoImpl implements LoginService {
 //                loginDetail.getPassword());
 //        Authentication auth = authenticationManager.authenticate(usernamePassword);
 //        
-        User user = userRepository.getUserByEmail(loginDetail.getEmail());
+        User user = userService.findByEmail(loginDetail.getEmail());
 //        UserDetailForToken userDetailForToken;
 //        if(user.getRoles().toString().equals("Admin")){
 //            userDetailForToken = new UserDetailForToken(user.getEmail(), user.getId(), user.getRoles());

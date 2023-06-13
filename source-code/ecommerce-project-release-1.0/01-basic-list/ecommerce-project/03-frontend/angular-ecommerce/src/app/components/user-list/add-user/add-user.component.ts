@@ -49,6 +49,9 @@ export class AddUserComponent implements OnInit {
         this.message = 'User created successfully';
         console.log('NEW USER = ', res);
         this.newlyAddedUser = res;
+  
+        // Redirect to the ViewUserComponent with the newly created user's ID
+        this.router.navigate([ 'users/:id', this.newlyAddedUser.id]);
       },
       (error) => {
         this.errorMessage = 'Something went wrong or duplicate entry';
