@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
 	        user.setFirstName(updatedUser.getFirstName());
 	        user.setLastName(updatedUser.getLastName());
 	        user.setGender(updatedUser.getGender());
-	        user.setPhotos(updatedUser.getPhotos());
+//	        user.setPhotos(updatedUser.getPhotos());
 
 	        user.setEnabled(updatedUser.isEnabled());
 	        user.setRoles(updatedUser.getRoles());

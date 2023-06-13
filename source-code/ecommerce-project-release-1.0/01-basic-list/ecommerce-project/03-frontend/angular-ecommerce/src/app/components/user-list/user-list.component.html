@@ -60,12 +60,12 @@
         <td class="align-middle">
           <div *ngIf="tempUser.photos">
             <!-- <img [src]="tempUser.photos" class="sm-auto rounded img-fluid" style="width: 60px; height: 60px;" /> -->
-            <img *ngIf="tempUser.photos" [src]="tempUser.photos" alt="User Photo" class="sm-auto rounded img-fluid"
+            <img [src]="tempUser.photos" alt="User Photo" class="sm-auto rounded img-fluid"
               style="width: 60px; height: 60px;" />
 
 
-            <img *ngIf="tempUser.photos == null" [src]="defaultImage[tempUser.gender]" alt="Default Avatar"
-              class="sm-auto rounded img-fluid" style="width: 60px; height: 60px;" />
+            <!-- <img *ngIf="tempUser.photos == null" [src]="defaultImage[tempUser.gender]" alt="Default Avatar"
+              class="sm-auto rounded img-fluid" style="width: 60px; height: 60px;" /> -->
             <!-- <img [src]="getProfilePic(tempUser.email, tempUser.gender)" alt="Image" class="rounded-circle img-fluid"
               style="width: 60px; height: 60px;"> -->
           </div>
