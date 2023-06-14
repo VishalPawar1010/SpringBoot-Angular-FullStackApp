@@ -12,6 +12,8 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
   getUserList(): Observable<Users[]> {
+    console.log( 'users list component = getUserList');
+
     return this.httpClient
       .get<Users[]>(this.baseUrl)
       .pipe(map((response) => response));
@@ -27,6 +29,9 @@ export class UserService {
   // }
   createUser(users: Users): Observable<Users> {
     return this.httpClient.post<Users>(this.baseUrl, users);
+  }
+  checkEmail(enteredEmail: any):Observable<boolean>{
+    return this.httpClient.get<boolean>(`${this.baseUrl}/check-email?email=${enteredEmail}`)
   }
 
   getImage(email: string): Observable<any> {

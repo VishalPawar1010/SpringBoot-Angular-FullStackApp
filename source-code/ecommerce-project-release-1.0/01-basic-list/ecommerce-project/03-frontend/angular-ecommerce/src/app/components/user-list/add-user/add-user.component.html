@@ -1,6 +1,6 @@
 <!-- Add a form for creating a new user -->
 <div class="container">
-  <form class="col-8" style="max-width: 350px; margin: 0 auto" (submit)="createUser(newUserForm)" #addUserForm="ngForm">
+  <form class="col-8" style="max-width: 350px; margin: 0 auto" #addUserForm="ngForm">
     <div class="border border-secondary rounded p-3 d-flex flex-column">
       <div class="my-auto">
         <p class="h5 mb-4 text-center">Add new user</p>
@@ -8,17 +8,26 @@
       <div class="form-group">
         <label for="firstName">First Name:</label>
         <input id="firstName" type="text" name="firstName" required [(ngModel)]="newUserForm.firstName"
-          class="form-control" />
+          (input)="generateEmail()" class="form-control" />
       </div>
       <div class="form-group">
         <label for="lastName">Last Name:</label>
         <input id="lastName" type="text" name="lastName" required [(ngModel)]="newUserForm.lastName"
-          class="form-control" />
+          (input)="generateEmail()" class="form-control" />
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
         <input id="email" type="email" name="email" required [(ngModel)]="newUserForm.email" #name="ngModel"
           class="form-control" />
+        <div style="display: flex; justify-content: space-between">
+          <button class="btn btn-primary btn-sm" (click)="checkEmailExists()">Check Email</button>
+          <div *ngIf="emailExists !== undefined" class="mt-2">
+            <span *ngIf="emailExists" class="text-danger">Email id is not available!</span>
+            <span *ngIf="!emailExists" class="text-success">Email id is available.</span>
+          </div>
+        </div>
+
+
       </div>
       <div class="form-group">
         <label for="Password">Password:</label>
@@ -48,7 +57,7 @@
         </select>
       </div>
       <div class="mt-3 text-center d-flex justify-content-between">
-        <button class="btn btn-success" type="submit">Create User</button>
+        <button class="btn btn-success" (click)="createUser(newUserForm)">Create User</button>
         <button class="btn btn-primary" routerLink="/users">Cancel</button>
       </div>
 

@@ -37,6 +37,8 @@ public class UserController {
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
+    	System.out.println("in get user list api " );
+
 		List<User> users = userService.getAllUsers();
 		return ResponseEntity.ok(users);
 	}
@@ -120,15 +122,9 @@ public class UserController {
 	}
 
 
-//	@DeleteMapping("/users/{id}")
-//	public ResponseEntity<Void> deleteUserById(@PathVariable Integer id) {
-//		Optional<User> userOptional = userRepository.findById(id);
-//		if (userOptional.isPresent()) {
-//			User user = userOptional.get();
-//			userRepository.delete(user);
-//			return ResponseEntity.noContent().build();
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}
+    @GetMapping("/users/check-email")
+    public boolean checkEmail(@RequestParam("email") String email) {
+    	System.out.println("email = " + email );
+        return userService.existsByEmail(email);
+    }
 }

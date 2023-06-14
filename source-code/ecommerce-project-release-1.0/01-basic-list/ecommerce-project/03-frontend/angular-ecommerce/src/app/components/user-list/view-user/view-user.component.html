@@ -3,7 +3,7 @@
     <div class="my-auto">
       <p class="h5 mb-4 text-center">User Details</p>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="user">
       <div class="col-md-4">
         <div>
           <img *ngIf="profilePic" [src]="profilePic" alt="User Photo" class="img-thumbnail"

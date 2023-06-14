@@ -1,17 +1,14 @@
 package com.luv2code.ecommerce.service;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luv2code.ecommerce.entity.User;
 import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.util.ImageUtil;
@@ -21,6 +18,7 @@ import com.luv2code.ecommerce.util.ImageUtil;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+	private final String defaultPassword = "argusadmin";
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -30,6 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
+    	System.out.println("in get user list serviceimpl" );
         for (User user : users) {
             byte[] photos = user.getPhotos();
             if (photos != null) {
@@ -50,8 +49,24 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email).get();
     }
     
+    private String encode(String password) {
+    	BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+    	String ecodedPassword = bcrypt.encode(password);
+    	return ecodedPassword;
+    }
+    
     @Override
     public User addUser(User newUser) {
+    	System.out.println("in add user serviceimpl" );
+    	System.out.println("in add user after photo==null" );
+    	
+    	if(newUser.getPassword() != null) {
+    		newUser.setPassword(encode(newUser.getPassword()));
+    	}
+    	else {
+    		newUser.setPassword(encode(defaultPassword));
+    	}
+    	
         return userRepository.save(newUser);
     }
     
@@ -96,12 +111,11 @@ public class UserServiceImpl implements UserService {
 	    if (userOptional.isPresent()) {
 	        User user = userOptional.get();
 	        user.setEmail(updatedUser.getEmail());
-	        user.setPassword(updatedUser.getPassword());
+	    	updatedUser.setPassword(encode(updatedUser.getPassword()));
 	        user.setFirstName(updatedUser.getFirstName());
 	        user.setLastName(updatedUser.getLastName());
 	        user.setGender(updatedUser.getGender());
 //	        user.setPhotos(updatedUser.getPhotos());
-
 	        user.setEnabled(updatedUser.isEnabled());
 	        user.setRoles(updatedUser.getRoles());
 
@@ -130,6 +144,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public byte[] viewImage(String email) {
 		 Optional<User> user = userRepository.findByEmail(email);
+		
 	        return ImageUtil.decompressImage(user.get().getPhotos());
 	}
 
@@ -145,6 +160,11 @@ public class UserServiceImpl implements UserService {
 	            userRepository.save(user);
 	        }
 	    }		
+	}
+
+	@Override
+	public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
 	}
 
 

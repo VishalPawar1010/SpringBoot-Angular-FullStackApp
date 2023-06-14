@@ -23,6 +23,8 @@ export class UpdateUserComponent implements OnInit {
   selectedPhotoURL: any;
   profilePics: any;
 
+  test = "malelele";
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -35,7 +37,7 @@ export class UpdateUserComponent implements OnInit {
     console.log('PROPS = ', this.props);
 
     this.user = this.props.user;
-    console.log('updated PROPS = ', this.user);
+
   }
 
   close() {

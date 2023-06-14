@@ -39,6 +39,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
+      console.log( 'users list component');
       this.listUsers();
       // this.getUserData();
     });
@@ -47,8 +48,11 @@ export class UserListComponent implements OnInit {
 
   
   listUsers() {
+    console.log( 'users list component = list-user method');
+
     this.userService.getUserList().subscribe((data) => {
       this.users = data;
+
       console.log( 'users list' ,this.users);
       this.users = data.map((user) => {
         // this.getResponse = user;
@@ -91,10 +95,14 @@ export class UserListComponent implements OnInit {
     modalRef.componentInstance.props = { user: { ...userToBeUpdated } };
 
     modalRef.result.then((res) => {
+      if (!res)
+        return;
+
       console.log('NEW USER = ', res);
       this.userService.updateUser(res.id, res).subscribe((updatedUser) => {
         const index = this.users.findIndex((u) => u.id === updatedUser.id);
-        
+        console.log('User updatedUser = ',updatedUser);
+        updatedUser.photos = this.defaultImage[updatedUser.gender];
         if (index !== -1) {
           this.users[index] = updatedUser;
           console.log('User updated successfully');
@@ -106,10 +114,14 @@ export class UserListComponent implements OnInit {
 
 
   deleteUser(user: Users): void {
+    const confirmed = window.confirm('Are you sure you want to delete this user?');
+    if (confirmed) {
+      this.userService.deleteUser(user.id).subscribe(() => {
+        this.users = this.users.filter((u) => u.id !== user.id);
+        // Handle success or show appropriate message
+      });
+    }
   
-    this.userService.deleteUser(user.id).subscribe(() => {
-      this.users = this.users.filter((u) => u.id !== user.id);
-      // Handle success or show appropriate message
-    });
+    
   }
 }

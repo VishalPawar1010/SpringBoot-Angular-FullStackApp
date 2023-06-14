@@ -29,6 +29,9 @@ public interface UserService {
     byte[] viewImage(String email);
     
     void deleteImageByEmail(String email);
+    
+    boolean existsByEmail(String email);
+
 
 
 
