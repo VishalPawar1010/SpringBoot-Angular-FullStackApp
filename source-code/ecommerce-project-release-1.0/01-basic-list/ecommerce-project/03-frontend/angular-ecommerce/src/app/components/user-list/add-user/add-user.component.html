@@ -1,96 +1,47 @@
-
-
-
 <!-- Add a form for creating a new user -->
 <div class="container">
-  <form
-    class="col-8"
-    style="max-width: 350px; margin: 0 auto"
-    (submit)="createUser(newUserForm)"
-    #addUserForm="ngForm"
-  >
+  <form class="col-8" style="max-width: 350px; margin: 0 auto" (submit)="createUser(newUserForm)" #addUserForm="ngForm">
     <div class="border border-secondary rounded p-3 d-flex flex-column">
       <div class="my-auto">
         <p class="h5 mb-4 text-center">Add new user</p>
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          [(ngModel)]="newUserForm.email"
-          #name="ngModel"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group">
-        <label for="Password">Password:</label>
-        <input
-          id="Password"
-          type="text"
-          name="Password"
-          required
-          [(ngModel)]="newUserForm.password"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input
-          id="firstName"
-          type="text"
-          name="firstName"
-          required
-          [(ngModel)]="newUserForm.firstName"
-          class="form-control"
-        />
+        <input id="firstName" type="text" name="firstName" required [(ngModel)]="newUserForm.firstName"
+          class="form-control" />
       </div>
       <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input
-          id="lastName"
-          type="text"
-          name="lastName"
-          required
-          [(ngModel)]="newUserForm.lastName"
-          class="form-control"
-        />
+        <input id="lastName" type="text" name="lastName" required [(ngModel)]="newUserForm.lastName"
+          class="form-control" />
       </div>
       <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" required [(ngModel)]="newUserForm.email" #name="ngModel"
+          class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="Password">Password:</label>
+        <input id="Password" type="text" name="Password" required [(ngModel)]="newUserForm.password"
+          class="form-control" />
+      </div>
+
+      <div class="form-group">
         <label for="gender">Gender :</label>
-        <select
-          id="gender"
-          type="text"
-          name="gender"
-          required
-          [(ngModel)]="newUserForm.gender"
-          class="form-control">
+        <select id="gender" type="text" name="gender" required [(ngModel)]="newUserForm.gender" class="form-control">
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
       </div>
-      <div class="form-group " >
-        <label for="enabled">Enabled  -- ? </label>
-          <input 
-            id="enabled"
-            type="checkbox"
-            name="enabled"
-            [(ngModel)]="newUserForm.enabled"
-            class="form-check-input custom-checkbox ml-2"
-          />
+      <div class="form-group ">
+        <label for="enabled">Enabled -- ? </label>
+        <input id="enabled" type="checkbox" name="enabled" [(ngModel)]="newUserForm.enabled"
+          class="form-check-input custom-checkbox ml-2" />
       </div>
-  
+
       <div class="form-group">
         <label for="roleId">Role ID:</label>
-        <select
-          id="roleId"
-          type="number"
-          name="roleId"
-          required
-          [(ngModel)]="roleId"
-          class="form-control">
+        <select id="roleId" type="number" name="roleId" required [(ngModel)]="roleId" class="form-control">
           <option value="1">1 - SuperAdmin</option>
           <option value="2">2 - Admin</option>
           <option value="3">3 - Employee</option>
@@ -100,23 +51,16 @@
         <button class="btn btn-success" type="submit">Create User</button>
         <button class="btn btn-primary" routerLink="/users">Cancel</button>
       </div>
-      
-      
+
+
     </div>
   </form>
   <div class="container text-center">
-    <span
-      *ngIf="message"
-      class="mb-4 text-center font-weight-bold text-success"
-    >
+    <span *ngIf="message" class="mb-4 text-center font-weight-bold text-success">
       {{ message }}
       <!-- {{ newlyAddedUser | json }} -->
     </span>
 
-    <span
-      *ngIf="errorMessage"
-      class="mb-4text-center font-weight-bold text-alert"
-      >{{ errorMessage }}</span
-    >
+    <span *ngIf="errorMessage" class="mb-4text-center font-weight-bold text-alert">{{ errorMessage }}</span>
   </div>
 </div>

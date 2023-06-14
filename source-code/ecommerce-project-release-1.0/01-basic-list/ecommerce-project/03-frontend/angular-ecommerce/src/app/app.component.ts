@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
   }
+  goToAddUser() {
+    this.router.navigate(['add-user']);
+  }
 
   logout() {
     this.authService.logout();
