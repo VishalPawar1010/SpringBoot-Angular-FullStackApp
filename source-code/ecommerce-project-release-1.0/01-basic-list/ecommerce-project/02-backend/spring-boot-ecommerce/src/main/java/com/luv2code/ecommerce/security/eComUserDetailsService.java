@@ -26,14 +26,10 @@ public class eComUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//		User user = userRepo.getUserByEmail(email);
-//		System.out.println("email -" + email);
 		User user = userService.findByEmail(email);
-//		System.out.println("user - " + user.toString());
 		if (user != null) {
 			return new eComUserDetails(user);
 		}
-		
 		throw new UsernameNotFoundException("Could not find user with email: " + email);
 	}
 

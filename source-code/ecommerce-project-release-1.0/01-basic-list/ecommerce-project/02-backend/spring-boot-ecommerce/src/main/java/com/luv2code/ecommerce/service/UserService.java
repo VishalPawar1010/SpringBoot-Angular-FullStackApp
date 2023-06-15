@@ -18,8 +18,6 @@ public interface UserService {
     
     User addUser(User newUser);
 
-//    User addUser(MultipartFile photoFile, String newUser) throws IOException;
-    
     User updateUserById(Integer id, User updatedUser);
     
     void deleteUserById(Integer id);
@@ -31,10 +29,5 @@ public interface UserService {
     void deleteImageByEmail(String email);
     
     boolean existsByEmail(String email);
-
-
-
-
-
 
 }

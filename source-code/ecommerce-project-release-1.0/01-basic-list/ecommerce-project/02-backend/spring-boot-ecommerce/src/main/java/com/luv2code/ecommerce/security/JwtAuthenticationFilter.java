@@ -29,9 +29,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService = new JwtService();
     
-    
-//    private final eComUserDetailsService c = new eComUserDetailsService();
-
     @Autowired
     private eComUserDetailsService userDetailsService;
     
@@ -53,8 +50,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // To Extract Email from JWT token need jwtService class
         userEmail = jwtService.extractUsername(jwt);
-//        System.out.println("token user emai - "+userEmail);
-        
         if(userEmail != null || SecurityContextHolder.getContext().getAuthentication() == null){
         	eComUserDetails userDetails = (eComUserDetails) this.userDetailsService.loadUserByUsername(userEmail);
             if(jwtService.isTokenValid(jwt, userDetails)){
@@ -64,7 +59,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities()
                 );
              authToken.setDetails(
-            		 
                        new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @CrossOrigin("http://localhost:4200")
-//@CrossOrigin("*")
 @RestController
 public class SpringBootEcommerceApplication {
 

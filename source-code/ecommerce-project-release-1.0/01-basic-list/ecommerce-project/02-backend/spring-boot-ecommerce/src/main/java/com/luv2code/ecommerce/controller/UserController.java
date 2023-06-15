@@ -97,31 +97,6 @@ public class UserController {
 		}
 	}
 
-//	@PutMapping("/users/{id}")
-//	public ResponseEntity<User> updateUserById(@PathVariable Integer id, @RequestBody User updatedUser) {
-//		Optional<User> userOptional = userRepository.findById(id);
-//		if (userOptional.isPresent()) {
-//			User user = userOptional.get();
-//			user.setEmail(updatedUser.getEmail());
-//			user.setPassword(updatedUser.getPassword());
-//			user.setFirstName(updatedUser.getFirstName());
-//			user.setLastName(updatedUser.getLastName());
-//			user.setEnabled(updatedUser.isEnabled());
-////            user.setPhotos(updatedUser.setPhotos(string))
-//
-//			Set<Role> updatedRoles = updatedUser.getRoles();
-//			if (updatedRoles != null) {
-//				user.getRoles().clear(); // Clear existing roles
-//				user.getRoles().addAll(updatedRoles); // Set new roles
-//			}
-//
-//			User savedUser = userRepository.save(user);
-//			return ResponseEntity.ok(savedUser);
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}
-
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<Void> deleteUserById(@PathVariable Integer id) {
 		userService.deleteUserById(id);

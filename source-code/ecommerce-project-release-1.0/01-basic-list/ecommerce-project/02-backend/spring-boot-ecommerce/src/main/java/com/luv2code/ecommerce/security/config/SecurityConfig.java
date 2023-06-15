@@ -54,16 +54,6 @@ public class SecurityConfig {
              .invalidateHttpSession(true) 
              .deleteCookies("Token"); 
 	
-//				.anyRequest().authenticated()
-//      .and().httpBasic()
-//				.and().formLogin();
-//		;
-
-//		http.authorizeRequests().antMatchers("/authenticate").permitAll()
-//		.anyRequest().authenticated()
-//		.and().exceptionHandling()
-//				.and()
-
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

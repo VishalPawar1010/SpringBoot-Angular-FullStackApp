@@ -70,40 +70,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(newUser);
     }
     
-//    @Override
-//    public User addUser(MultipartFile photoFile, String newUserJson) throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        User newUser = objectMapper.readValue(newUserJson, User.class);
-//
-//        if (photoFile != null && !photoFile.isEmpty()) {
-//            byte[] photoData = photoFile.getBytes();
-//            byte[] compressedData = ImageUtil.compressImage(photoData);
-//            newUser.setPhotos(compressedData);
-//        } else {
-//            byte[] defaultImageData = getDefaultImageData();
-//            newUser.setPhotos(defaultImageData);
-//        }
-//
-//        return userRepository.save(newUser);
-//    }
-    
-//	private byte[] getDefaultImageData() throws IOException {
-//	    // Read the default image file
-//	    ClassPathResource resource = new ClassPathResource("/static/user-photos/avatar.png");
-//	    InputStream inputStream = resource.getInputStream();
-//	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//	    byte[] buffer = new byte[4096];
-//	    int bytesRead;
-//	    while ((bytesRead = inputStream.read(buffer)) != -1) {
-//	        outputStream.write(buffer, 0, bytesRead);
-//	    }
-//	    byte[] imageData = outputStream.toByteArray();
-//	    
-//	    // Compress the image data if needed
-//	    byte[] compressedData = ImageUtil.compressImage(imageData);
-//	    
-//	    return compressedData;
-//	}
 	
 	@Override
 	public User updateUserById(Integer id, User updatedUser) {
@@ -151,8 +117,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteImageByEmail(String email) {
 		Optional<User> userOptional = userRepository.findByEmail(email);
-//		userOptional.get().setPhotos(null);
-//		userRepository.save(userOptional.get());
 	    if (userOptional.isPresent()) {
 	        if (userOptional != null) {
 	        	User user = userOptional.get();

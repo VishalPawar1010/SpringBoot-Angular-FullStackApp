@@ -37,15 +37,12 @@ public class LoginController {
 	@PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> loginRequest(@RequestBody LoginDetail loginDetail) throws MissingParameterException 
     		 {
-//                 System.out.println(loginService.loginRequest(loginDetail));
         return ResponseEntity.ok(loginService.loginRequest(loginDetail));
     }
 	
 	@PostMapping("/logout")
 	  public ResponseEntity<AuthenticationResponse> logout(@RequestBody LoginDetail loginDetail) {
-	    // Perform any necessary cleanup tasks or invalidate the JWT token
 
-	    // Return a success response
 	    return ResponseEntity.ok().build();
 	  }
 

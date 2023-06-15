@@ -198,18 +198,6 @@ public class User {
 		this.roles = roles;
 	}
 
-//	public User(Integer id, String email, String password, String firstName, String lastName, String gender,
-//			byte[] photos, MultipartFile photoFile, boolean enabled, Set<Role> roles) {
-////		super();
-//		this.id = id;
-//		this.email = email;
-//		this.password = password;
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.gender = gender;
-//		this.enabled = enabled;
-//		this.roles = roles;
-//	}
 
 	@Override
 	public String toString() {

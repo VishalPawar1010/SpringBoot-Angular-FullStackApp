@@ -18,11 +18,8 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginService loginDao;
 
-
  	@Override
  	public AuthenticationResponse loginRequest(LoginDetail loginDetail) throws MissingParameterException {
- 	
- 		
  		return loginDao.loginRequest(loginDetail);
 }
 }
