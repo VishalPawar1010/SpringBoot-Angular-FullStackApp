@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     firstName: '',
     lastName: '',
     gender: '',
-    photos: undefined,
+    photos: null,
     enabled: false,
     roles: []
   }; 
@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
     private authService: AuthService, 
     private router: Router,    
     private userService:UserService,
-    // private location: Location
     ) {}
 
   ngOnInit(): void {
@@ -52,20 +51,8 @@ export class AppComponent implements OnInit {
   getUserByEmail(){
     const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
     this.userService.getUserByEmail(loggedInUserEmail).subscribe((res) =>{
-      console.log('ID  res ',res);
-      console.log('ID  res ',res.id);
-
       this.loggedInUser.id = res.id;
-      // const userID = res.id;
-      console.log('ID of loggedIN user = ',this.loggedInUser.id)
-      // this.router.navigate(['user', { id: this.loggedInUser.id }]);
-
-      this.router.navigate(['user', { id: res.id }],);
-      // this.location.forward();
-      // this.router.navigate(['user'],{ queryParams: { id: res.id  } });
-
-      // this.router.navigate(['user'], { queryParams: { email: loggedInUserEmail } });
-
+      this.router.navigate(['user', { id: this.loggedInUser.id }],);
     })
   }
   goToUsers(): void{

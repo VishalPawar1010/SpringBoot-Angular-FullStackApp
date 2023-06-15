@@ -9,21 +9,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css']
+  styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
   @Input() props: any;
 
   user: any;
-  role:any;
-  // user: Users = new Users(0, '', '', '', '', '', false, []);
+  role: any;
   errorMessage: String = '';
   message: string = '';
   selectedPhoto: File;
   selectedPhotoURL: any;
   profilePics: any;
-
-  test = "malelele";
 
   constructor(
     private userService: UserService,
@@ -34,10 +31,7 @@ export class UpdateUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('PROPS = ', this.props);
-
     this.user = this.props.user;
-
   }
 
   close() {
@@ -45,9 +39,7 @@ export class UpdateUserComponent implements OnInit {
   }
 
   updateUser(): void {
-    delete this.user.photos 
+    delete this.user.photos;
     this.activeModal.close(this.user);
   }
-
- 
 }

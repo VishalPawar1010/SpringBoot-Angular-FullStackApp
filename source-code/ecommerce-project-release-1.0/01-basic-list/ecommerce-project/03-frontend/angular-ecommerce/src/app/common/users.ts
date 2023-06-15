@@ -9,15 +9,6 @@ export class Users {
     public gender: string,
     public photos: any,
     public enabled: boolean,
-    public roles: Roles[],
-
-  ) {}
-}
-export class newUser {
-  constructor(
-    public email: string,
-    public password: string,
-    public firstName: string,
-    public lastName: string
+    public roles: Roles[]
   ) {}
 }

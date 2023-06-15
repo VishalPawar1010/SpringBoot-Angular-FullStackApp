@@ -1,9 +1,3 @@
-<!-- <div class="modal-header">
-  <h4 class="modal-title text-center">Update User Details</h4>
-  <button type="button" class="close" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div> -->
 <div class="modal-body">
 
   <div>
@@ -14,15 +8,9 @@
       <div class="card-body">
 
         <div>
-          <!-- <div class="my-auto">
-          <p class="h5 mb-4 text-center">Update user</p>
-        </div> -->
+
           <form class="col-8 updateForm" style="max-width: 350px; margin: 0 auto" #updateForm #updateUserForm="ngForm">
-            <!-- <div class="form-group">
-              <label for="email">Id:</label>
-              <input id="id" type="number" name="id" required [(ngModel)]="user.id" #name="ngModel"
-                class="form-control" />
-            </div> -->
+
 
             <div class="form-group">
               <label for="email">Email:</label>
@@ -55,15 +43,6 @@
               </select>
             </div>
 
-            <!-- <div class="form-group">
-              <label for="roles">Roles:</label>
-              <select id="roles" name="roles" [(ngModel)]="user.roles" class="form-control" multiple
-                style="height: 30px;">
-                <option *ngFor="let role of user.roles" [value]="role">
-                  {{ role.name }}
-                </option>
-              </select>
-            </div> -->
 
             <div class="form-group" *ngIf="user.roles.length >= 0">
               <label for="roles[0].id">Role Id:</label>
@@ -82,7 +61,6 @@
           </button>
         </div>
       </div>
-      <!-- </div> -->
     </div>
 
 

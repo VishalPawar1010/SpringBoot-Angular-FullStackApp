@@ -1,6 +1,5 @@
 <div class="page-wrapper">
   <div class="page-container">
-    <!-- HEADER DESKTOP-->
     <header class="header-desktop" *ngIf="isLoggedIn">
       <!-- <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
@@ -15,7 +14,6 @@
             <div class="btn-group" role="group" aria-label="Users and Roles Buttons">
               <div class="mr-2">
                 <button class="btn btn-secondary " (click)="goToUsers()">Users</button>
-                <!-- <button class="btn btn-secondary mr-2" routerLink="/users" routerLinkActive="active-link">Users</button> -->
               </div>
               <!-- <div class="ml-2">
                 <button class="btn btn-secondary ml-2" routerLink="/roles" routerLinkActive="active-link">Roles</button>
@@ -41,17 +39,13 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT-->
     <div class="main-content">
-      <!-- <app-product-list></app-product-list> -->
-      <!-- <app-login></app-login> -->
       <router-outlet></router-outlet>
     </div>
 
   </div>
 </div>
 
-<!-- END PAGE CONTAINER-->
 
 <footer *ngIf="isLoggedIn">
   <ul>
@@ -60,5 +54,3 @@
     <li><a href="#">Help</a></li>
   </ul>
 </footer>
-
-<!-- end document-->

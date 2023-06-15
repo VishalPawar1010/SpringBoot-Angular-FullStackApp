@@ -24,18 +24,8 @@ export class AuthenticateGuard implements CanActivate {
     | boolean
     | UrlTree {
     let token = localStorage.getItem('token');
-    if (token)
-      this.authService.setLoginStatus(true);
-    else
-      this.authService.setLoginStatus(false);
-    console.log('TOKEN = ', token);
-    console.log('URL = ', state.url);
-
-    // if (state.url == '/login') {
-    //   // if (token) return this.router.parseUrl('/users');
-    //   return true;
-    // }
-    // if (!token) return this.router.parseUrl('/login');
+    if (token) this.authService.setLoginStatus(true);
+    else this.authService.setLoginStatus(false);
 
     if (state.url === '/login' && token) {
       return this.router.parseUrl('/users');
@@ -43,7 +33,6 @@ export class AuthenticateGuard implements CanActivate {
 
     if (!token && state.url !== '/login') {
       return this.router.parseUrl('/login');
-      // return true;
     }
 
     return true;

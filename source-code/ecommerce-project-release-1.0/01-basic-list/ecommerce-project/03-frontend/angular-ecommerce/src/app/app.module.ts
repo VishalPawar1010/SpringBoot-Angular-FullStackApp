@@ -16,30 +16,6 @@ import { AddUserComponent } from './components/user-list/add-user/add-user.compo
 import { UpdateUserComponent } from './components/user-list/update-user/update-user.component';
 import { ViewUserComponent } from './components/user-list/view-user/view-user.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     canActivate: [AuthenticateGuard],
-//     children: [
-//       { path: 'login', component: LoginComponent },
-//       { path: 'users', component: UserListComponent },
-//       { path: 'roles', component: RolesListComponent },
-//       { path: 'category/:id', component: ProductListComponent },
-//       { path: 'category', component: ProductListComponent },
-//       { path: 'products', component: ProductListComponent },
-
-//       { path: '', redirectTo: '/products', pathMatch: 'full' },
-//       { path: '**', redirectTo: '/products', pathMatch: 'full' },
-//       // { path: 'users', component: UserListComponent },
-//       // { path: 'users/:id', component: UserListComponent },
-//       // { path: 'roles/:id', component: UserListComponent },
-//       // { path: 'roles/:id', component: RolesListComponent },
-
-//       // { path: '', redirectTo: '/users', pathMatch: 'full' },
-//       // { path: '**', redirectTo: '/users', pathMatch: 'full' },
-//     ],
-//   },
-// ];
 const routes: Routes = [
   {
     path: '',
@@ -51,7 +27,11 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
     component: LoginComponent,
   },
-  { path: 'user', canActivate: [AuthenticateGuard], component: ViewUserComponent },
+  {
+    path: 'user',
+    canActivate: [AuthenticateGuard],
+    component: ViewUserComponent,
+  },
   {
     path: 'users',
     canActivate: [AuthenticateGuard],
@@ -73,7 +53,6 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
     component: UpdateUserComponent,
   },
-
 
   {
     path: '**',
