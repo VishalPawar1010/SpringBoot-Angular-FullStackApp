@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {}
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
           this.token = res.token;
           localStorage.setItem('token', this.token);
           // localStorage.setItem('token', this.token);
+          localStorage.setItem('loggedInUserEmail', this.model.username);
           this.authService.setLoginStatus(true);
           this.router.navigate(['users']);
         },

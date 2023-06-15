@@ -65,27 +65,20 @@ export class UserListComponent implements OnInit {
       });
     });
   }
-
-
-  
-  // getProfilePic(email: String, gender: String): String {
-  //   // const profilePic = this.profilePics.get(email);
-  //   const profilePic =this.users
-  //   if(gender=='male'){
-  //     return profilePic?profilePic:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp';
-  //   }
-  //   return profilePic?profilePic:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp';
-  // }
   
   goToAddUser() {
     this.router.navigate(['add-user']);
   }
   viewUser(user: Users): void {
-    console.log('View user:', user);
-
-    console.log('View user id:', user.id);
+  
+    // this.router.navigate(['user'], { queryParams: { email: user.email } });
 
     this.router.navigate(['user', { id: user.id }]);
+    // window.location.reload();
+
+
+    // this.router.navigate(['user'],{ queryParams: { id: user.id  }}
+    // );
   }
   
 

@@ -55,6 +55,17 @@ public class UserController {
 		}
 	}
 	
+	
+	@GetMapping("/users/email/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+		User user = userService.findByEmail(email);
+		if (user != null) {
+			return ResponseEntity.ok(user);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
     @ResponseStatus(value= HttpStatus.OK)
     @PostMapping("/users/updateImage/{email}")
     public ResponseEntity<byte[]> updateImage(@RequestParam("profilePic") MultipartFile file, @PathVariable String email) throws IOException{

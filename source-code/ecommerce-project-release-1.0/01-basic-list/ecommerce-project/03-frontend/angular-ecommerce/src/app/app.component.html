@@ -28,11 +28,14 @@
             </div>
 
 
-            <div class="account-wrap"></div>
-
-            <button class="btn btn-danger ml-auto" color="accent" data-testid="logout" (click)="logout()">
-              Logout
-            </button>
+            <div class="account-wrap">
+              <button class="btn btn-light ml-auto" color="accent" (click)="getUserByEmail()">
+                My Account
+              </button>
+              <button class="btn btn-danger ml-auto" color="accent" data-testid="logout" (click)="logout()">
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>

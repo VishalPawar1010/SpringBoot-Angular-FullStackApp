@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { Users } from 'src/app/common/users';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './view-user.component.html',
   styleUrls: ['./view-user.component.css']
 })
-export class ViewUserComponent {
+export class ViewUserComponent implements OnInit  {
 
   user: any;
   profilePic: any;
@@ -17,6 +18,7 @@ export class ViewUserComponent {
   showAlert: boolean = false;
   showMessage: boolean = false;
   file: File | undefined;
+  
   @ViewChild('fileInput') fileInput: ElementRef;
 
   defaultImage = {
@@ -31,29 +33,53 @@ export class ViewUserComponent {
 
   ngOnInit(): void {
     console.log('in view-user');
-    const userId = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUserById(userId).subscribe(
-      (res) => {
-        this.userEmail = res.email;
-        
-        console.log(res);
-        this.userService.getImage(this.userEmail).subscribe((imageData: Blob) => {
-          console.log(this.userEmail);
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            this.profilePic = reader.result;
-            // this.tempProfilePic = this.profilePic
-          };
-          reader.readAsDataURL(imageData);
-        });
-        this.user = res;
-      },
-      (error) => {
-        console.log('ERROR:', error);
-      }
-    );
-  }
+    console.log('in view-user');
+    this.route.paramMap.subscribe((params) => {
+      const userId = +params.get('id');
+      this.userService.getUserById(userId).subscribe(
+        (res) => {
+          this.userEmail = res.email;
+          console.log(res);
+          this.loadProfilePic();
+          this.user = res;
+        },
+        (error) => {
+          console.log('ERROR:', error);
+        }
+      );
+    });
 
+    // const userId = +this.route.snapshot.paramMap.get('id');
+    // this.userService.getUserById(userId).subscribe(
+    //   (res) => {
+    //     this.userEmail = res.email;
+        
+    //     console.log(res);
+    //     this.userService.getImage(this.userEmail).subscribe((imageData: Blob) => {
+    //       console.log(this.userEmail);
+    //       const reader = new FileReader();
+    //       reader.onloadend = () => {
+    //         this.profilePic = reader.result;
+    //         // this.tempProfilePic = this.profilePic
+    //       };
+    //       reader.readAsDataURL(imageData);
+    //     });
+    //     this.user = res;
+    //   },
+    //   (error) => {
+    //     console.log('ERROR:', error);
+    //   }
+    // );
+  }
+  loadProfilePic() {
+    this.userService.getImage(this.userEmail).subscribe((imageData: Blob) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.profilePic = reader.result;
+      };
+      reader.readAsDataURL(imageData);
+    });
+  }
   onChange(event: any) {
     this.file = event.target.files[0];
     const reader = new FileReader();

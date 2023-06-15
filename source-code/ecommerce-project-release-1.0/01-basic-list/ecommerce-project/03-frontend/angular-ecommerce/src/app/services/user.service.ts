@@ -23,6 +23,10 @@ export class UserService {
   getUserById(id: number): Observable<Users> {
     return this.httpClient.get<Users>(`${this.baseUrl}/${id}`);
   }
+  getUserByEmail(email: string): Observable<Users> {
+    console.log('email for getSUerBYEmail = ', email);
+    return this.httpClient.get<Users>(`${this.baseUrl}/email/${email}`);
+  }
 
   // createUser(formData: FormData): Observable<Users> {
   //   return this.httpClient.post<Users>(this.baseUrl, formData);

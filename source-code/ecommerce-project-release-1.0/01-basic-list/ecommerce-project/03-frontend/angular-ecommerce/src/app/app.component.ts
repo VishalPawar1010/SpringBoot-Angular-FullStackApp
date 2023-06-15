@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
+import { Users } from './common/users';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -9,13 +13,32 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   isLoggedIn = false;
+  loggedInUser: Users = {
+    id: 0,
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    gender: '',
+    photos: undefined,
+    enabled: false,
+    roles: []
+  }; 
 
 
-  constructor(private authService: AuthService, private router: Router,) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router,    
+    private userService:UserService,
+    // private location: Location
+    ) {}
 
   ngOnInit(): void {
+    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+    this.isLoggedIn = !!loggedInUserEmail;
  
     this.authService.isLoggedIn.subscribe((isLoggedIn) => {
+
       this.isLoggedIn = isLoggedIn;
     });
   }
@@ -25,6 +48,25 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+  getUserByEmail(){
+    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+    this.userService.getUserByEmail(loggedInUserEmail).subscribe((res) =>{
+      console.log('ID  res ',res);
+      console.log('ID  res ',res.id);
+
+      this.loggedInUser.id = res.id;
+      // const userID = res.id;
+      console.log('ID of loggedIN user = ',this.loggedInUser.id)
+      // this.router.navigate(['user', { id: this.loggedInUser.id }]);
+
+      this.router.navigate(['user', { id: res.id }],);
+      // this.location.forward();
+      // this.router.navigate(['user'],{ queryParams: { id: res.id  } });
+
+      // this.router.navigate(['user'], { queryParams: { email: loggedInUserEmail } });
+
+    })
   }
   goToUsers(): void{
     this.router.navigate(['users']);
