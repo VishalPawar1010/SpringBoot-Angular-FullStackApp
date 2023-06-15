@@ -18,7 +18,7 @@ import com.luv2code.ecommerce.util.ImageUtil;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-	private final String defaultPassword = "argusadmin";
+	private final String defaultPassword = "Admin@123";
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {

@@ -8,12 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.luv2code.ecommerce.entity.User;
+import com.luv2code.ecommerce.exceptions.MissingParameterException;
 import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
 import com.luv2code.ecommerce.security.dao.LoginDetail;
 import com.luv2code.ecommerce.security.dao.UserDetailForToken;
 import com.luv2code.ecommerce.service.UserService;
-import com.luv2code.ecommerce.util.MissingParameterException;
 
 import lombok.RequiredArgsConstructor;
 

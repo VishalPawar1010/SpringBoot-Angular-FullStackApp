@@ -1,7 +1,7 @@
 package com.luv2code.ecommerce.controller;
 import org.junit.jupiter.api.Test;
 
-import com.luv2code.ecommerce.util.MissingParameterException;
+import com.luv2code.ecommerce.exceptions.MissingParameterException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

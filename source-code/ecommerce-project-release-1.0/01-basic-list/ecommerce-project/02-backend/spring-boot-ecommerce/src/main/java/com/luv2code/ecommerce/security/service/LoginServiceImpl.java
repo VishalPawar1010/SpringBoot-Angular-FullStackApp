@@ -6,9 +6,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import com.luv2code.ecommerce.exceptions.MissingParameterException;
 import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
 import com.luv2code.ecommerce.security.dao.LoginDetail;
-import com.luv2code.ecommerce.util.MissingParameterException;
 
 
 @Qualifier("loginDaoImpl")

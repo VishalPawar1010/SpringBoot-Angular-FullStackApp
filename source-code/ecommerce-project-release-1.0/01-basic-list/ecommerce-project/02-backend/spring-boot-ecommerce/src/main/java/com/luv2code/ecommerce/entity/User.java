@@ -1,9 +1,11 @@
 package com.luv2code.ecommerce.entity;
 
-import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
+//
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +17,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+//import javax.validation.constraints.Email;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.luv2code.ecommerce.util.ImageUtil;
 
 @Entity
 @Table(name = "users")
@@ -30,18 +34,31 @@ public class User {
 	private Integer id;
 
 	@Column(length = 128, nullable = false, unique = true)
+	@NotEmpty(message = "Email is required")
+	@NotNull(message = "Email should not be null")
+    @Email(message = "Invalid email format")
 	private String email;
 
 	@Column(length = 64, nullable = false)
+	@NotBlank(message = "Password is required")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$",
+            message = "Password must contain at least one alphabetical character, one digit, one special character, and be at least 8 characters long.")
 	private String password;
 
 	@Column(name = "first_name", length = 45, nullable = false)
+	@Size(min=2, message= "firstName must be at least 2 characters long")
+	@NotBlank(message = "First Name is required")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]*$", message = "First Name should start with a capital letter and contain only alphabets.")
 	private String firstName;
 
 	@Column(name = "last_name", length = 45, nullable = false)
+	@Size(min=2, message= "Lenth must be greater than 1")
+	@NotBlank(message = "Last Name is required")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]*$", message = "Last Name should start with a capital letter and contain only alphabets.")
 	private String lastName;
 	
     @Column(name="gender", length = 45, nullable = false)
+    @NotBlank(message = "Gender is required")
     private String gender;
 
 
@@ -57,6 +74,8 @@ public class User {
 	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@Fetch(FetchMode.JOIN)
+    @NotEmpty(message = "At least one role is required")
+    @Size(min = 1, message = "At least one role is required")
 	private Set<Role> roles = new HashSet<>();
 
 	public Integer getId() {

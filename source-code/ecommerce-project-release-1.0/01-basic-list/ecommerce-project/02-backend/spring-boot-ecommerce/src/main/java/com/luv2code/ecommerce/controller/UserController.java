@@ -3,6 +3,8 @@ package com.luv2code.ecommerce.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -68,7 +70,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> addUser(@RequestBody User newUser) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody User newUser) {
         User createdUser = userService.addUser(newUser);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }

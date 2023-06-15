@@ -14,7 +14,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class AddUserComponent implements OnInit {
   // newUserForm: newUser = new newUser('', '', '', '');
 
-  newUserForm: Users = new Users(0, '', 'argusadmin', '','','','',false,[]);
+  newUserForm: Users = new Users(0, '', 'Admin@123', '','','','',false,[]);
   errorMessage: String = '';
   message: string = '';
   newlyAddedUser: any;
