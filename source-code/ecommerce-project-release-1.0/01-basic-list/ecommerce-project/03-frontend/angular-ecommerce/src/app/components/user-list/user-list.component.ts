@@ -21,6 +21,7 @@ export class UserListComponent implements OnInit {
   activeModal: any;
   studentToUpdate: Users[] = [];
   getResponse: any;
+  dtOptions: DataTables.Settings = {};
 
   defaultImage = {
     male: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp',
@@ -37,6 +38,12 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true,
+    };
+
     this.route.paramMap.subscribe(() => {
       console.log('users list component');
       this.listUsers();

@@ -11,6 +11,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -21,6 +22,9 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "types": [
+      "datatables.net"
     ]
   },
   "angularCompilerOptions": {

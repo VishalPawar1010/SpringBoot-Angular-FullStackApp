@@ -1,8 +1,9 @@
 <div class="mt-3 container container-fluid">
 
-  <table class="table">
-    <thead class="sticky-header thead-light bg-info">
-      <tr class="text-center">
+  <!-- datatable *ngIf="dtOptions && users" [dtOptions]="dtOptions" -->
+  <table class="table table-striped" style="background-color: white; border-collapse: collapse">
+    <thead>
+      <tr>
 
         <th>Photos</th>
         <th>Email</th>
@@ -18,7 +19,7 @@
     <tbody>
       <tr *ngFor="let tempUser of users">
 
-        <td class="align-middle">
+        <td>
           <div *ngIf="tempUser.photos">
             <img [src]="tempUser.photos" alt="User Photo" class="sm-auto rounded img-fluid"
               style="width: 60px; height: 60px;" />
