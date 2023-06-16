@@ -60,20 +60,20 @@ public class SecurityConfig {
 		return http.build();
 	}
 
-	private String[] getServices(String location) {
-		InputStream fileStream = TypeReference.class.getResourceAsStream(location);
-		ObjectMapper mapper = new ObjectMapper();
-		List<String> urlList = new ArrayList<>();
-		try {
-			urlList = mapper.readValue(fileStream, ArrayList.class);
-		} catch (StreamReadException e) {
-			throw new RuntimeException(e);
-		} catch (DatabindException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		return urlList.stream().toArray(String[]::new);
-	}
+//	private String[] getServices(String location) {
+//		InputStream fileStream = TypeReference.class.getResourceAsStream(location);
+//		ObjectMapper mapper = new ObjectMapper();
+//		List<String> urlList = new ArrayList<>();
+//		try {
+//			urlList = mapper.readValue(fileStream, ArrayList.class);
+//		} catch (StreamReadException e) {
+//			throw new RuntimeException(e);
+//		} catch (DatabindException e) {
+//			throw new RuntimeException(e);
+//		} catch (IOException e) {
+//			throw new RuntimeException(e);
+//		}
+//
+//		return urlList.stream().toArray(String[]::new);
+//	}
 }

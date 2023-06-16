@@ -27,12 +27,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService = new JwtService();
+     JwtService jwtService = new JwtService();
     
-    @Autowired
-    private eComUserDetailsService userDetailsService;
-    
-    @Override
+    @Autowired eComUserDetailsService userDetailsService;
+
+	@Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,

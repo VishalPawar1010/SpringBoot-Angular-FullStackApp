@@ -10,7 +10,6 @@ describe('RolesListComponent', () => {
   let rolesServiceSpy: jasmine.SpyObj<RolesService>;
 
   beforeEach(() => {
-    // Create a spy object for the RolesService
     const spy = jasmine.createSpyObj('RolesService', ['getRolesList']);
 
     TestBed.configureTestingModule({

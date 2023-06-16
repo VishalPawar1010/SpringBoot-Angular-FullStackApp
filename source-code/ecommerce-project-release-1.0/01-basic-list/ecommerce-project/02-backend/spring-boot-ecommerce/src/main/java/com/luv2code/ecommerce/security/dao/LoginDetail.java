@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class LoginDetail {
 
     private String email;
@@ -28,6 +28,17 @@ public class LoginDetail {
 	}
 
 	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+
+	public LoginDetail() {
+//		super();
+	}
+
+	public LoginDetail(String email, String password) {
+//		super();
+		this.email = email;
 		this.password = password;
 	}
 

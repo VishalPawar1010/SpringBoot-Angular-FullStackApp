@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
-    	System.out.println("in get user list serviceimpl" );
         for (User user : users) {
             byte[] photos = user.getPhotos();
             if (photos != null) {
@@ -57,8 +56,7 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public User addUser(User newUser) {
-    	System.out.println("in add user serviceimpl" );
-    	System.out.println("in add user after photo==null" );
+
     	
     	if(newUser.getPassword() != null) {
     		newUser.setPassword(encode(newUser.getPassword()));

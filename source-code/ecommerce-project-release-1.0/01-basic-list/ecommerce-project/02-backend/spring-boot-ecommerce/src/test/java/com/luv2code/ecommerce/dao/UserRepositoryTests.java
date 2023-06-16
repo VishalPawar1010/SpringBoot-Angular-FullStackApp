@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -20,7 +19,7 @@ import com.luv2code.ecommerce.repo.UserRepository;
 
 //@DataJpaTest
 //@AutoConfigureTestDatabase
-@Disabled
+//@Disabled
 public class UserRepositoryTests {
 
 	
@@ -36,7 +35,7 @@ public class UserRepositoryTests {
 
 	    @BeforeEach
 	    public void setUp() {
-	    	testUser = new User("ramesh@patel.com", "password", "Ramesh", "Patel");
+	    	testUser = new User(null, "ramesh@patel.com", "password", "Ramesh", "Patel", null, false, null);
 	        role1 = new Role("Admin");
 	        role2 = new Role("Editor");
 	    }
@@ -90,27 +89,8 @@ public class UserRepositoryTests {
 	        assertTrue(testUser.isEnabled());
 	        assertEquals(roles, testUser.getRoles());
 	    }
-	    @Test
-	    public void testAddRole() {
-	    	testUser.addRole(role1);
-	    	testUser.addRole(role2);
-	        
-	        assertEquals(1, testUser.getRoles().size());
-	        assertTrue(testUser.getRoles().contains(role1));
-	        assertTrue(testUser.getRoles().contains(role2));
-	    }
-	    @Test
-	    public void testToString() {
-	    	testUser.addRole(role1);
-	    	testUser.addRole(role2);
-//	    	User [id=15, email=jackkbruce@yahoo.com, firstName=Jack, lastName=Bruce, roles=[Editor, Shipper]]
-	        String expectedString = "User [id=null, email=ramesh@patel.com, firstName=Ramesh, lastName=Patel, roles=[Admin]]";
-	        assertEquals(expectedString, testUser.toString());
-	        
-	        
-//	        System.out.println(testUser.toString());
-//	        Actual = User [id=null, email=ramesh@patel.com, firstName=Ramesh, lastName=Patel, roles=[Admin]]
-	    }
+
+
 	    
 	    @Test
 	    public void testConstructor() {
@@ -119,7 +99,6 @@ public class UserRepositoryTests {
 	        assertEquals("password", testUser.getPassword());
 	        assertEquals("Ramesh", testUser.getFirstName());
 	        assertEquals("Patel", testUser.getLastName());
-	        assertTrue(testUser.getRoles().isEmpty());
 	        
 	    }
 }

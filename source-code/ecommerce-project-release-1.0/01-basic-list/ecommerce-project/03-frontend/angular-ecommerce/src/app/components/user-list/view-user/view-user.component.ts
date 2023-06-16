@@ -33,13 +33,12 @@ export class ViewUserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('in view-user');
-    console.log('in view-user');
     this.route.paramMap.subscribe((params) => {
       const userId = +params.get('id');
       this.userService.getUserById(userId).subscribe(
         (res) => {
           this.userEmail = res.email;
-          console.log(res);
+          // console.log(res);
           this.loadProfilePic();
           this.user = res;
         },
@@ -75,7 +74,7 @@ export class ViewUserComponent implements OnInit {
   }
 
   deleteImage() {
-    console.log('test delete');
+    // console.log('test delete');
     this.userService.deleteProfilePic(this.userEmail).subscribe((res) => {
       this.profilePic =
         'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp';

@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+//@Data
 @Builder
 //@AllArgsConstructor
 @NoArgsConstructor
@@ -46,11 +46,11 @@ public class UserDetailForToken {
 		this.roles = roles;
 	}
 
-	public UserDetailForToken(String email, Integer id) {
-		super();
-		this.email = email;
-		this.id = id;
-	}
+//	public UserDetailForToken(String email, Integer id) {
+//		super();
+//		this.email = email;
+//		this.id = id;
+//	}
 
 	public UserDetailForToken(String email, Integer id, Set<Role> roles) {
 		super();

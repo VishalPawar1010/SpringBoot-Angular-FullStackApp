@@ -164,27 +164,7 @@ public class User {
 	
 	public User() {
 	}
-
-	public User(String email, String firstName, String lastName) {
-//		super();
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
 	
-
-	public User(String email, String password, String firstName, String lastName) {
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
-	
-	
-	
-	
-
 	public User(Integer id, String email, String password, String firstName, String lastName, String gender,
 			boolean enabled, Set<Role> roles) {
 //		super();
@@ -198,6 +178,18 @@ public class User {
 		this.roles = roles;
 	}
 
+
+
+
+//	public User(
+//			String email,
+//			String password,
+//			Set<Role> roles) {
+//		super();
+//		this.email = email;
+//		this.password = password;
+//		this.roles = roles;
+//	}
 
 	@Override
 	public String toString() {

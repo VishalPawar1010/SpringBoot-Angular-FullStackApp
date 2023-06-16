@@ -1,4 +1,4 @@
-package com.luv2code.ecommerce.controller;
+package com.luv2code.ecommerce.exceptions;
 import org.junit.jupiter.api.Test;
 
 import com.luv2code.ecommerce.exceptions.MissingParameterException;

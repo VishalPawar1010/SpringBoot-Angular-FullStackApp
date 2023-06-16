@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.luv2code.ecommerce.entity.Role;
 import com.luv2code.ecommerce.security.dao.UserDetailForToken;
 
-public class UserDetailForTokenTest {
+public class UserDetailForTokenTests {
 
     private UserDetailForToken userDetail;
 

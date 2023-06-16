@@ -39,7 +39,6 @@ public class UserController {
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
-    	System.out.println("in get user list api " );
 
 		List<User> users = userService.getAllUsers();
 		return ResponseEntity.ok(users);

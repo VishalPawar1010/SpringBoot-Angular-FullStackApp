@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 //@AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 public class AuthenticationResponse {
 
     private String token;
@@ -41,6 +41,11 @@ public class AuthenticationResponse {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+	
+
+	public AuthenticationResponse() {
+//		super();
 	}
 
 	public AuthenticationResponse(String token) {

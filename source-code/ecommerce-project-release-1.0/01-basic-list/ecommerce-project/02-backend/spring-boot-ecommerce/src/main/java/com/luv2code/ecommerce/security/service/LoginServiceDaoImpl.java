@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.luv2code.ecommerce.entity.User;
 import com.luv2code.ecommerce.exceptions.MissingParameterException;
-import com.luv2code.ecommerce.repo.UserRepository;
 import com.luv2code.ecommerce.security.dao.AuthenticationResponse;
 import com.luv2code.ecommerce.security.dao.LoginDetail;
 import com.luv2code.ecommerce.security.dao.UserDetailForToken;

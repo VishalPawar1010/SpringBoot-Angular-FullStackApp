@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -32,13 +32,12 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.token = res.token;
           localStorage.setItem('token', this.token);
-          // localStorage.setItem('token', this.token);
           localStorage.setItem('loggedInUserEmail', this.model.username);
           this.authService.setLoginStatus(true);
           this.router.navigate(['users']);
         },
         error: (err) => {
-          this.loginError = 'Invalid user email or password'; // Set the loginError property
+          this.loginError = 'Invalid user email or password';
           console.log('ERROR = ', err);
         },
       });
