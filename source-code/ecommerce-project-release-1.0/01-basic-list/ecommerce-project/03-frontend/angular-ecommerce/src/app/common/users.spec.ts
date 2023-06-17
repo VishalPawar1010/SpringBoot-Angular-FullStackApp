@@ -1,31 +1,35 @@
-import { Users, newUser } from './users';
+import { Roles } from './roles';
+import { Users } from './users';
 
 describe('Users', () => {
-  it('should create a new Users instance', () => {
-    const user = new Users(
-      1,
-      'test@example.com',
-      'password123',
-      'John',
-      'Doe',
-      'photo.jpg',
-      true
+  let users: Users;
+
+  beforeEach(() => {
+    users = new Users(
+      1, // id
+      'test@example.com', // email
+      'password', // password
+      'John', // firstName
+      'Doe', // lastName
+      'Male', // gender
+      'photo.jpg', // photos
+      true, // enabled
+      [new Roles(1, 'Admin', 'all')] // roles
     );
-
-    expect(user.id).toBe(1);
-    expect(user.email).toBe('test@example.com');
-    expect(user.password).toBe('password123');
-    expect(user.firstName).toBe('John');
-    expect(user.lastName).toBe('Doe');
-    expect(user.photos).toBe('photo.jpg');
-    expect(user.enabled).toBe(true);
   });
-  it('should create a new newUser instance', () => {
-    const user = new newUser('test@example.com', 'password123', 'John', 'Doe');
 
-    expect(user.email).toBe('test@example.com');
-    expect(user.password).toBe('password123');
-    expect(user.firstName).toBe('John');
-    expect(user.lastName).toBe('Doe');
+  it('should create an instance of Users', () => {
+    expect(users).toBeTruthy();
+    expect(users.id).toEqual(1);
+    expect(users.email).toEqual('test@example.com');
+    expect(users.password).toEqual('password');
+    expect(users.firstName).toEqual('John');
+    expect(users.lastName).toEqual('Doe');
+    expect(users.gender).toEqual('Male');
+    expect(users.photos).toEqual('photo.jpg');
+    expect(users.enabled).toEqual(true);
+    expect(users.roles.length).toEqual(1);
+    expect(users.roles[0].id).toEqual(1);
+    expect(users.roles[0].name).toEqual('Admin');
   });
 });

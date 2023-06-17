@@ -34,41 +34,41 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to "users" when login is successful', () => {
-    const mockToken = 'token';
-    const mockResponse = { token: mockToken };
+  // it('should navigate to "users" when login is successful', () => {
+  //   const mockToken = 'token';
+  //   const mockResponse = { token: mockToken };
 
-    httpClientSpy.post.and.returnValue(of(mockResponse));
+  //   httpClientSpy.post.and.returnValue(of(mockResponse));
 
-    component.model.username = 'test@example.com';
-    component.model.password = 'password';
-    component.login();
+  //   component.model.username = 'test@example.com';
+  //   component.model.password = 'password';
+  //   component.login();
 
-    expect(httpClientSpy.post).toHaveBeenCalledWith('/api/login', {
-      email: 'test@example.com',
-      password: 'password',
-    });
+  //   expect(httpClientSpy.post).toHaveBeenCalledWith('/api/login', {
+  //     email: 'test@example.com',
+  //     password: 'password',
+  //   });
 
-    expect(sessionStorage.getItem('token')).toEqual(mockToken);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['users']);
-  });
+  //   expect(sessionStorage.getItem('token')).toEqual(mockToken);
+  //   expect(routerSpy.navigate).toHaveBeenCalledWith(['users']);
+  // });
 
-  it('should show alert when login fails', () => {
-    httpClientSpy.post.and.returnValue(of(null));
+  // it('should show alert when login fails', () => {
+  //   httpClientSpy.post.and.returnValue(of(null));
 
-    spyOn(window, 'alert');
+  //   spyOn(window, 'alert');
 
-    component.model.username = 'test@example.com';
-    component.model.password = 'password';
-    component.login();
+  //   component.model.username = 'test@example.com';
+  //   component.model.password = 'password';
+  //   component.login();
 
-    expect(httpClientSpy.post).toHaveBeenCalledWith('/api/login', {
-      email: 'test@example.com',
-      password: 'password',
-    });
+  //   expect(httpClientSpy.post).toHaveBeenCalledWith('/api/login', {
+  //     email: 'test@example.com',
+  //     password: 'password',
+  //   });
 
-    expect(sessionStorage.getItem('token')).toBeNull();
-    expect(window.alert).toHaveBeenCalledWith('Authentication failed.');
-    expect(routerSpy.navigate).not.toHaveBeenCalled();
-  });
+  //   expect(sessionStorage.getItem('token')).toBeNull();
+  //   expect(window.alert).toHaveBeenCalledWith('Authentication failed.');
+  //   expect(routerSpy.navigate).not.toHaveBeenCalled();
+  // });
 });

@@ -25,6 +25,7 @@
     ],
     "types": [
       "datatables.net"
+      // "jasmine"
     ]
   },
   "angularCompilerOptions": {
