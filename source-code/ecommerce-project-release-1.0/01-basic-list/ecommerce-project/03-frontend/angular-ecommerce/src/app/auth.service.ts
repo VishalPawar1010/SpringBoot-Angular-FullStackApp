@@ -26,7 +26,7 @@ export class AuthService {
         this.setLoginStatus(false);
         this.router.navigate(['/login']);
         this.broadcastChannel.postMessage('logout');
-        // window.location.reload();
+        window.location.reload();
       },
       (error) => {
         console.log('Logout error:', error);

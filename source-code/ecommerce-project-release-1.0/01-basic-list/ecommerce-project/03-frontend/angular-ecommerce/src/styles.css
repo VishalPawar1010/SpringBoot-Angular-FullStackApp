@@ -104,39 +104,41 @@ a:hover {
 } */
 
 /*Layout Css*/
-.section-content-p35 {
+/* .section-content-p35 {
     padding: 0 35px
-}
+} */
 
 .page-wrapper {
-    overflow: hidden;
-    background: #e5e5e5;
-    padding-bottom: 8vh
+    overflow: clip;
+    /* background: #e5e5e5; */
+
+    background-color: rgb(220, 224, 217);
+    /* padding-bottom: 2vh */
 }
 
-.page-container {
+/* .page-container {
     background: #e5e5e5;
-    /* padding-left: 200px */
-}
+    padding-left: 200px
+} */
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 10px;
     min-height: 100vh
 }
 
-aside.menu-sidebar.d-none.d-lg-block.clr {
+/* aside.menu-sidebar.d-none.d-lg-block.clr {
     background: 0 0;
     z-index: 99999999;
     height: 75px;
     box-shadow: -2px 0 4px #0000003b
-}
+} */
 
 /* 
  * ----------------------------
  * Header Desktop Section
  * ----------------------------
  */
-
+/* 
 .header-desktop {
     background: #0da8e4;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
@@ -309,7 +311,7 @@ input.au-input.au-input-xl {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
-}
+} */
 
 /* 
  * ----------------------------
