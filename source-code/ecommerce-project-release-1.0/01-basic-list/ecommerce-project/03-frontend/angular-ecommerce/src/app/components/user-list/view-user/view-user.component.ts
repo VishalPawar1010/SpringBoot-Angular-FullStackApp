@@ -96,17 +96,39 @@ export class ViewUserComponent implements OnInit {
     this.profilePic = this.tempProfilePic;
   }
 
+  // onUpload() {
+  //   if (this.file) {
+  //     const formData = new FormData();
+  //     formData.append('profilePic', this.file);
+  //     this.userService
+  //       .updateProfilePic(formData, this.userEmail)
+  //       .subscribe((res: any) => {
+  //         this.profilePic = res;
+  //       });
+  //   }
+  //   this.showAlert = false;
+  //   this.showMessage = false;
+  // }
+
   onUpload() {
-    if (this.file) {
-      const formData = new FormData();
-      formData.append('profilePic', this.file);
-      this.userService
-        .updateProfilePic(formData, this.userEmail)
-        .subscribe((res: any) => {
-          this.profilePic = res;
-        });
+    try {
+      if (this.file) {
+        const formData = new FormData();
+        formData.append('profilePic', this.file);
+        this.userService.updateProfilePic(formData, this.userEmail).subscribe(
+          (res: any) => {
+            this.profilePic = res;
+          },
+          (error: any) => {
+            // Handle the error here
+            console.error('Error handled ');
+          }
+        );
+      }
+      this.showAlert = false;
+      this.showMessage = false;
+    } catch (error) {
+      console.error('An error occurred:', error);
     }
-    this.showAlert = false;
-    this.showMessage = false;
   }
 }
